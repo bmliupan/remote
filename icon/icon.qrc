@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>mcu.ico</file>
+    </qresource>
+</RCC>
