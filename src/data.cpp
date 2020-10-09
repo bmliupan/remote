@@ -1,19 +1,4 @@
-#ifndef COMMON_H
-#define COMMON_H
-#include <QApplication>
-
-enum FlagType {
-    normalFlag,     //机顶盒按键输入标记
-    learnFlag,      //学习按键输入标记
-    setFlag,        //设置键输入标记
-    invalidFlag,    //无效输入标记
-    nonInputFlag    //没有输入
-};
-
-enum ErrorType {
-    E_OVER_LENGTH,      //输入字符超长
-    E_OVER_LEARNKEY    //超出最大可支持学习按键数
-};
+#include "inc/data.h"
 
 bool toggleState = true;
 bool display_flag = true; //序号显示与否标记位
@@ -71,6 +56,4 @@ uint8_t translist[66] = {
      0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10
 };
 
-const int MaxLearnKeyNum = 7;
 
-#endif // COMMON_H

@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "inc/function.h"
+#include "inc/data.h"
 #include <QMessageBox>
-#include "common.h"
 #include <QFileDialog>
 #include <QDataStream>
 #include <qdatetime.h>
@@ -11,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->label_A->setStyleSheet("color:red;");
+    ui->label_B->setStyleSheet("color:red;");
+    ui->label_C->setStyleSheet("color:red;");
     setWindowIcon(QIcon(":/icon/mcu.ico"));
 }
 
@@ -19,63 +23,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-static int char2int(char data) {
-    char t[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
-    for (int i = 0; i < 16; i ++) {
-        if (data == t[i]) return i;
-    }
-    return 100;
-}
-
-static bool checkInput(QString text, int num){
-    char *s = NULL;
-    int numH = 100, numL = 100;
-    keyFlag[num] = nonInputFlag; //初始标记没有输入
-    QByteArray ba = text.toLatin1();
-    s = ba.data();
-    int length = strlen(s);
-    if (length > 3) return false;
-    for (int i = 0; i < length; i ++){
-        if (s[i] >= 'a' && s[i] <= 'z') s[i] = s[i] - 32; // 将小写字母改成大写
-    }
-    if (s[0] == 'S' && s[1] == 'E' && s[2] == 'T') {
-        keyFlag[num] = setFlag; //如果输入字符为set，则将其设为设置键
-        return true;
-    }
-    if (length == 0) {
-        keyFlag[num] = nonInputFlag;
-        return true;
-    }
-    if (length == 2) {
-        numH = char2int(s[0]);
-        numL = char2int(s[1]);
-        if (numH > 15 || numL > 15) {
-            keyFlag[num] = invalidFlag;
-            return false;
-        }
-        keyValue[num] = (numH * 16) + numL;     //保存按键数据
-        keyFlag[num] = edit_flag;               //保存标记
-        return true;
-    }
-    keyFlag[num] = invalidFlag;
-    return false;
-}
-
-static uint16_t calculate_verifycode(QByteArray dataBuff)
+void MainWindow::on_pushButton_2_clicked()
 {
-    uint16_t buffCode = 0;
-    uint8_t xorNum[4] = {0};
-    for (int i = 0; i < dataBuff.size(); ) {
-        xorNum[3] = xorNum[3] ^ dataBuff[i++];
-        xorNum[2] = xorNum[2] ^ dataBuff[i++];
-        xorNum[1] = xorNum[1] ^ dataBuff[i++];
-        xorNum[0] = xorNum[0] ^ dataBuff[i++];
-    }
-    buffCode = xorNum[3] * 0x1000 + xorNum[2] * 0x0100 + xorNum[1] * 0x0010 + xorNum[0] * 0x0001;
-    return buffCode;
-}
-
-void MainWindow::on_pushButton_2_clicked(){
 
     uint8_t normalKeyNum =0;
     uint8_t learnKeyNum =0;
@@ -153,19 +102,21 @@ void MainWindow::on_pushButton_2_clicked(){
     return;
 }
 
-void MainWindow::on_pushButton_clicked(){
+void MainWindow::on_pushButton_1_clicked()
+{
     edit_flag = (!edit_flag)&0x01;
     if(edit_flag) {
-        ui->pushButton->setText("学习按键编辑");
-        ui->pushButton->setStyleSheet("color:red");
+        ui->pushButton_1->setText("学习按键编辑");
+        ui->pushButton_1->setStyleSheet("color:red");
     } else {
-        ui->pushButton->setText("普通按键编辑");
-        ui->pushButton->setStyleSheet("color:black");
+        ui->pushButton_1->setText("普通按键编辑");
+        ui->pushButton_1->setStyleSheet("color:black");
     }
 
 }
 
-void MainWindow::on_pushButton_3_clicked(){
+void MainWindow::on_pushButton_3_clicked()
+{
     display_flag = !display_flag;
     if(display_flag) {
         ui->pushButton_3->setText("显示序号");
@@ -310,7 +261,8 @@ void MainWindow::on_pushButton_3_clicked(){
 
 }
 
-void MainWindow::on_pushButton_4_clicked(){
+void MainWindow::on_pushButton_4_clicked()
+{
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("文件对话框！"),
                                                     "D:",
@@ -323,18 +275,13 @@ void MainWindow::on_pushButton_4_clicked(){
     }
 
     QByteArray fileData;
-
     fileData = file.readAll();
-    fileData = file.readAll();
-    fileData = file.readAll();
-
-
 }
 
-void MainWindow::on_lineEdit_070_editingFinished()
+void MainWindow::on_lineEdit_user_STB_editingFinished()
 {
     char *stringBuff = NULL;
-    QByteArray user = ui->lineEdit_070->text().toLatin1();
+    QByteArray user = ui->lineEdit_user_STB->text().toLatin1();
     stringBuff = user.data();
     int length = strlen(stringBuff);
     if (length > 4) {
@@ -360,7 +307,8 @@ void MainWindow::on_lineEdit_070_editingFinished()
 
 }
 
-void MainWindow::on_lineEdit_001_editingFinished(){
+void MainWindow::on_lineEdit_001_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_001->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -372,7 +320,8 @@ void MainWindow::on_lineEdit_001_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_002_editingFinished(){
+void MainWindow::on_lineEdit_002_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_002->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -384,7 +333,8 @@ void MainWindow::on_lineEdit_002_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_003_editingFinished(){
+void MainWindow::on_lineEdit_003_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_003->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -396,7 +346,8 @@ void MainWindow::on_lineEdit_003_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_004_editingFinished(){
+void MainWindow::on_lineEdit_004_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_004->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -408,7 +359,8 @@ void MainWindow::on_lineEdit_004_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_005_editingFinished(){
+void MainWindow::on_lineEdit_005_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_005->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -420,7 +372,8 @@ void MainWindow::on_lineEdit_005_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_006_editingFinished(){
+void MainWindow::on_lineEdit_006_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_006->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -432,7 +385,8 @@ void MainWindow::on_lineEdit_006_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_007_editingFinished(){
+void MainWindow::on_lineEdit_007_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_007->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -444,7 +398,8 @@ void MainWindow::on_lineEdit_007_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_008_editingFinished(){
+void MainWindow::on_lineEdit_008_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_008->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -456,7 +411,8 @@ void MainWindow::on_lineEdit_008_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_009_editingFinished(){
+void MainWindow::on_lineEdit_009_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_009->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -468,7 +424,8 @@ void MainWindow::on_lineEdit_009_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_010_editingFinished(){
+void MainWindow::on_lineEdit_010_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_010->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -480,7 +437,8 @@ void MainWindow::on_lineEdit_010_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_011_editingFinished(){
+void MainWindow::on_lineEdit_011_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_011->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -492,7 +450,8 @@ void MainWindow::on_lineEdit_011_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_012_editingFinished(){
+void MainWindow::on_lineEdit_012_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_012->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -504,7 +463,8 @@ void MainWindow::on_lineEdit_012_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_013_editingFinished(){
+void MainWindow::on_lineEdit_013_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_013->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -516,7 +476,8 @@ void MainWindow::on_lineEdit_013_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_014_editingFinished(){
+void MainWindow::on_lineEdit_014_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_014->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -528,7 +489,8 @@ void MainWindow::on_lineEdit_014_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_015_editingFinished(){
+void MainWindow::on_lineEdit_015_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_015->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -540,7 +502,8 @@ void MainWindow::on_lineEdit_015_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_016_editingFinished(){
+void MainWindow::on_lineEdit_016_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_016->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -552,7 +515,8 @@ void MainWindow::on_lineEdit_016_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_017_editingFinished(){
+void MainWindow::on_lineEdit_017_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_017->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -564,7 +528,8 @@ void MainWindow::on_lineEdit_017_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_018_editingFinished(){
+void MainWindow::on_lineEdit_018_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_018->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -576,7 +541,8 @@ void MainWindow::on_lineEdit_018_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_019_editingFinished(){
+void MainWindow::on_lineEdit_019_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_019->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -588,7 +554,8 @@ void MainWindow::on_lineEdit_019_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_020_editingFinished(){
+void MainWindow::on_lineEdit_020_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_020->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -600,7 +567,8 @@ void MainWindow::on_lineEdit_020_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_021_editingFinished(){
+void MainWindow::on_lineEdit_021_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_021->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -612,7 +580,8 @@ void MainWindow::on_lineEdit_021_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_022_editingFinished(){
+void MainWindow::on_lineEdit_022_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_022->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -624,7 +593,8 @@ void MainWindow::on_lineEdit_022_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_023_editingFinished(){
+void MainWindow::on_lineEdit_023_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_023->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -636,7 +606,8 @@ void MainWindow::on_lineEdit_023_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_024_editingFinished(){
+void MainWindow::on_lineEdit_024_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_024->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -648,7 +619,8 @@ void MainWindow::on_lineEdit_024_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_025_editingFinished(){
+void MainWindow::on_lineEdit_025_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_025->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -661,7 +633,8 @@ void MainWindow::on_lineEdit_025_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_026_editingFinished(){
+void MainWindow::on_lineEdit_026_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_026->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -673,7 +646,8 @@ void MainWindow::on_lineEdit_026_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_027_editingFinished(){
+void MainWindow::on_lineEdit_027_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_027->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -685,7 +659,8 @@ void MainWindow::on_lineEdit_027_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_028_editingFinished(){
+void MainWindow::on_lineEdit_028_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_028->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -697,7 +672,8 @@ void MainWindow::on_lineEdit_028_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_029_editingFinished(){
+void MainWindow::on_lineEdit_029_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_029->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -709,7 +685,8 @@ void MainWindow::on_lineEdit_029_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_030_editingFinished(){
+void MainWindow::on_lineEdit_030_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_030->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -721,7 +698,8 @@ void MainWindow::on_lineEdit_030_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_031_editingFinished(){
+void MainWindow::on_lineEdit_031_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_031->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -733,7 +711,8 @@ void MainWindow::on_lineEdit_031_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_032_editingFinished(){
+void MainWindow::on_lineEdit_032_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_032->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -745,7 +724,8 @@ void MainWindow::on_lineEdit_032_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_033_editingFinished(){
+void MainWindow::on_lineEdit_033_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_033->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -757,7 +737,8 @@ void MainWindow::on_lineEdit_033_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_034_editingFinished(){
+void MainWindow::on_lineEdit_034_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_034->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -769,7 +750,8 @@ void MainWindow::on_lineEdit_034_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_035_editingFinished(){
+void MainWindow::on_lineEdit_035_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_035->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -781,7 +763,8 @@ void MainWindow::on_lineEdit_035_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_036_editingFinished(){
+void MainWindow::on_lineEdit_036_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_036->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -793,7 +776,8 @@ void MainWindow::on_lineEdit_036_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_037_editingFinished(){
+void MainWindow::on_lineEdit_037_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_037->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -805,7 +789,8 @@ void MainWindow::on_lineEdit_037_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_038_editingFinished(){
+void MainWindow::on_lineEdit_038_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_038->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -817,7 +802,8 @@ void MainWindow::on_lineEdit_038_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_039_editingFinished(){
+void MainWindow::on_lineEdit_039_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_039->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -829,7 +815,8 @@ void MainWindow::on_lineEdit_039_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_040_editingFinished(){
+void MainWindow::on_lineEdit_040_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_040->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -841,7 +828,8 @@ void MainWindow::on_lineEdit_040_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_041_editingFinished(){
+void MainWindow::on_lineEdit_041_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_041->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -854,7 +842,8 @@ void MainWindow::on_lineEdit_041_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_042_editingFinished(){
+void MainWindow::on_lineEdit_042_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_042->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -866,7 +855,8 @@ void MainWindow::on_lineEdit_042_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_043_editingFinished(){
+void MainWindow::on_lineEdit_043_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_043->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -878,7 +868,8 @@ void MainWindow::on_lineEdit_043_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_044_editingFinished(){
+void MainWindow::on_lineEdit_044_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_044->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -890,7 +881,8 @@ void MainWindow::on_lineEdit_044_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_045_editingFinished(){
+void MainWindow::on_lineEdit_045_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_045->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -902,7 +894,8 @@ void MainWindow::on_lineEdit_045_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_046_editingFinished(){
+void MainWindow::on_lineEdit_046_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_046->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -914,7 +907,8 @@ void MainWindow::on_lineEdit_046_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_047_editingFinished(){
+void MainWindow::on_lineEdit_047_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_047->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -926,7 +920,8 @@ void MainWindow::on_lineEdit_047_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_048_editingFinished(){
+void MainWindow::on_lineEdit_048_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_048->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -938,7 +933,8 @@ void MainWindow::on_lineEdit_048_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_049_editingFinished(){
+void MainWindow::on_lineEdit_049_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_049->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -950,7 +946,8 @@ void MainWindow::on_lineEdit_049_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_050_editingFinished(){
+void MainWindow::on_lineEdit_050_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_050->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -962,7 +959,8 @@ void MainWindow::on_lineEdit_050_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_051_editingFinished(){
+void MainWindow::on_lineEdit_051_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_051->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -974,7 +972,8 @@ void MainWindow::on_lineEdit_051_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_052_editingFinished(){
+void MainWindow::on_lineEdit_052_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_052->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -986,7 +985,8 @@ void MainWindow::on_lineEdit_052_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_053_editingFinished(){
+void MainWindow::on_lineEdit_053_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_053->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -998,7 +998,8 @@ void MainWindow::on_lineEdit_053_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_054_editingFinished(){
+void MainWindow::on_lineEdit_054_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_054->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1010,7 +1011,8 @@ void MainWindow::on_lineEdit_054_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_055_editingFinished(){
+void MainWindow::on_lineEdit_055_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_055->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1022,7 +1024,8 @@ void MainWindow::on_lineEdit_055_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_056_editingFinished(){
+void MainWindow::on_lineEdit_056_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_056->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1034,7 +1037,8 @@ void MainWindow::on_lineEdit_056_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_057_editingFinished(){
+void MainWindow::on_lineEdit_057_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_057->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1046,7 +1050,8 @@ void MainWindow::on_lineEdit_057_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_058_editingFinished(){
+void MainWindow::on_lineEdit_058_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_058->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1058,7 +1063,8 @@ void MainWindow::on_lineEdit_058_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_059_editingFinished(){
+void MainWindow::on_lineEdit_059_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_059->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1070,7 +1076,8 @@ void MainWindow::on_lineEdit_059_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_060_editingFinished(){
+void MainWindow::on_lineEdit_060_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_060->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1082,7 +1089,8 @@ void MainWindow::on_lineEdit_060_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_061_editingFinished(){
+void MainWindow::on_lineEdit_061_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_061->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1094,7 +1102,8 @@ void MainWindow::on_lineEdit_061_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_062_editingFinished(){
+void MainWindow::on_lineEdit_062_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_062->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1106,7 +1115,8 @@ void MainWindow::on_lineEdit_062_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_063_editingFinished(){
+void MainWindow::on_lineEdit_063_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_063->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1118,7 +1128,8 @@ void MainWindow::on_lineEdit_063_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_064_editingFinished(){
+void MainWindow::on_lineEdit_064_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_064->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1130,7 +1141,8 @@ void MainWindow::on_lineEdit_064_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_065_editingFinished(){
+void MainWindow::on_lineEdit_065_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_065->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
@@ -1142,7 +1154,8 @@ void MainWindow::on_lineEdit_065_editingFinished(){
     }
 }
 
-void MainWindow::on_lineEdit_066_editingFinished(){
+void MainWindow::on_lineEdit_066_editingFinished()
+{
     if(!edit_flag) {
         ui->lineEdit_066->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {

@@ -1,4 +1,5 @@
 QT       += core gui
+VERSION = "1.1.0.0"
 RC_ICONS = icon/mcu.ico
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,10 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    src/data.cpp \
+    src/function.cpp
 
 HEADERS += \
-    common.h \
+    inc/data.h \
+    inc/function.h \
+    ltFileParameter.h \
     mainwindow.h
 
 FORMS += \

@@ -15,7 +15,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 public slots:
-    void on_pushButton_clicked();
+    void on_pushButton_1_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void on_pushButton_4_clicked();
@@ -87,7 +87,8 @@ public slots:
     void on_lineEdit_064_editingFinished();
     void on_lineEdit_065_editingFinished();
     void on_lineEdit_066_editingFinished();
-    void on_lineEdit_070_editingFinished();
+
+    void on_lineEdit_user_STB_editingFinished();
 
 private:
     Ui::MainWindow *ui;
