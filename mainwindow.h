@@ -15,6 +15,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 public slots:
+    //按键响应
     void on_pushButton_1_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
@@ -89,6 +90,8 @@ public slots:
     void on_lineEdit_066_editingFinished();
 
     void on_lineEdit_user_STB_editingFinished();
+    void on_lineEdit_user_TV_editingFinished();
+
 
 private:
     Ui::MainWindow *ui;

@@ -1,5 +1,4 @@
 #include "inc/function.h"
-#include "inc/data.h"
 #include <QFileDialog>
 #include <QDataStream>
 #include <qdatetime.h>
@@ -61,4 +60,32 @@ uint16_t calculate_verifycode(QByteArray dataBuff)
     }
     buffCode = xorNum[3] * 0x1000 + xorNum[2] * 0x0100 + xorNum[1] * 0x0010 + xorNum[0] * 0x0001;
     return buffCode;
+}
+
+uint8_t getFormatNum(QString format)
+{
+    uint8_t i = 0;
+    for (i = 0; i < 47; i++) {
+        if(formatStr[i] == format)return i;
+    }
+    return 100;
+}
+
+uint16_t setStateIO(uint8_t pin, IOState state)
+{
+    if (pin == 1) return 0;
+    return ioPinState[state][pin - 2];
+}
+
+uint16_t setLevelIO(uint8_t pin, IOLevel level)
+{
+    if (pin == 1) return 0;
+    return ioPinLevel[level][pin - 2];
+}
+
+
+uint16_t judgeIO(uint8_t pin)
+{
+    if (pin >13 || pin < 3) return  0;
+    return ioData[pin - 3];
 }

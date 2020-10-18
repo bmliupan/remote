@@ -1,5 +1,5 @@
 QT       += core gui
-VERSION = "1.1.0.0"
+VERSION = "1.2.0.0"
 RC_ICONS = icon/mcu.ico
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -41,4 +41,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     icon/icon.qrc \
-    ltFile.qrc
+   ltFile.qrc

@@ -40,7 +40,10 @@ strlist.append('SET_KEY_ADDR2')
 strlist.append('SET_KEY_ADDR3')
 strlist.append('SET_KEY_ADDR4')
 strlist.append('LEARN_KEY_ADDR')
-strlist.append('SET_OUTPUT_ADDR')
+strlist.append('SET_OUTPUT_ADDR1')
+strlist.append('SET_OUTPUT_ADDR2')
+strlist.append('SET_OUTPUT_ADDR3')
+strlist.append('SET_OUTPUT_ADDR4')
 strlist.append('SET_INPUT_ADDR')
 
 

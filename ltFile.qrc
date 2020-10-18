@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/lt">
-        <file>ltFile/CheckSum[0x6C78]new.lt</file>
+        <file>ltFile/new.lt</file>
     </qresource>
 </RCC>

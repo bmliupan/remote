@@ -15,15 +15,32 @@ enum ErrorType {
     E_OVER_LEARNKEY    //超出最大可支持学习按键数
 };
 
+enum IOState {
+    inState,
+    OutState
+};
+
+enum IOLevel {
+    lowLevel,
+    highLevel
+};
+
 extern bool toggleState;
 extern bool display_flag;
 extern uint8_t edit_flag;
-extern uint8_t keyValue[66];
+extern uint16_t keyValue[66];
 extern uint8_t keyFlag[66];
-extern uint8_t userCode[4];
 extern uint8_t translate[66];
 extern uint8_t translist[66];
-
-#define MaxLearnKeyNum  7;
+extern uint8_t userCodeSTB[8];
+extern uint8_t userCodeTV[8];
+extern QString formatSTB;
+extern QString formatTV;
+extern QString formatStr[];
+extern uint16_t ioPinState[2][13];
+extern uint16_t ioPinLevel[2][13];
+extern uint8_t listenIO[66][2];
+extern uint16_t ioData[11];
+#define MaxLearnKeyNum  10;
 
 #endif // DATA_H

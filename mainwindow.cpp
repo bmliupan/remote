@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QDataStream>
 #include <qdatetime.h>
+#include "ltFileParameter.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,6 +24,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//生成烧录文件
 void MainWindow::on_pushButton_2_clicked()
 {
 
@@ -30,19 +32,23 @@ void MainWindow::on_pushButton_2_clicked()
     uint8_t learnKeyNum =0;
     uint8_t setKeyNum = 0;
     uint8_t totalKeyNum =0;
-    uint8_t learnKeyList[7] = {77,77,77,77,77,77,77};
+    uint8_t setKeyValue = 0;
+    uint8_t learnKeyList[10] = {77,77,77,77,77,77,77,77,77,77};
     for (int i = 0; i < 66; i++) {
         if(keyFlag[i] == normalFlag) normalKeyNum ++;
         if(keyFlag[i] == learnFlag) {
             learnKeyList[learnKeyNum++] = translist[i];
-            if(learnKeyNum > 7) {
-                  QMessageBox::critical(NULL, tr("错误"), tr("学习按键数超过最大支持数7个！"));
+            if(learnKeyNum > 10) {
+                  QMessageBox::critical(NULL, tr("错误"), tr("学习按键数超过最大支持数10个！"));
                   return;
             }
         }
-        if(keyFlag[i] == setFlag) setKeyNum ++;
+        if(keyFlag[i] == setFlag) {
+            setKeyNum ++;
+            setKeyValue = translist[i];
+        }
         if(keyFlag[i] == invalidFlag) {
-            QMessageBox::critical(NULL, tr("错误"), tr("当前页面存在非法输入，请检查！"));
+            QMessageBox::critical(NULL, tr("错误"), tr("当前页面存在错误键值输入，请检查！"));
             return;
         }
     }
@@ -53,7 +59,7 @@ void MainWindow::on_pushButton_2_clicked()
     }
 
     totalKeyNum = normalKeyNum + learnKeyNum + setKeyNum;
-    QFile file(":/lt/ltFile/CheckSum[0x6C78]new.lt");
+    QFile file(":/lt/ltFile/new.lt");
 
     if(!file.open(QIODevice::ReadOnly)) {
       qDebug("open source file failed!");
@@ -63,33 +69,175 @@ void MainWindow::on_pushButton_2_clicked()
     QByteArray fileData;
     uint16_t verifyCode = 0;
     fileData = file.readAll();
-    verifyCode = calculate_verifycode(fileData);
+/*    verifyCode = calculate_verifycode(fileData);
     if(verifyCode != 0x6C78) {
         QMessageBox::critical(NULL, tr("资源文件损坏"), tr("源文件验证码：0x6C78\n目前文件验证码：0x%1").arg(verifyCode,4,16));
         return;
-    }
+    } */
     /* 写入键码数据 */
-    uint16_t index = 15460;
+    uint16_t index = KEY_DATA_ADDR;//读入键值首地址
     for (uint8_t j = 0; j < 66; j ++) {
-        index ++;
-        index ++;
-        fileData[index++] = (keyValue[translate[j]] & 0xf0) >> 4;
-        fileData[index++] = keyValue[translate[j]] & 0x0f;
+        fileData[index++] = (uint8_t)((keyValue[translate[j]] >> 12) & 0x000f);
+        fileData[index++] = (uint8_t)((keyValue[translate[j]] >> 8) & 0x000f);
+        fileData[index++] = (uint8_t)((keyValue[translate[j]] >> 4) & 0x000f);
+        fileData[index++] = (uint8_t)((keyValue[translate[j]] >> 0) & 0x000f);
     }
     /* 写入用户码数据 */
-    fileData[15734] = (userCode[0] & 0xf0) >> 4;
-    fileData[15735] = userCode[0] & 0x0f;
-    fileData[15742] = (userCode[1] & 0xf0) >> 4;
-    fileData[15743] = userCode[1] & 0x0f;
+    fileData[STB_USER_CODE1_ADDR + 2] = userCodeSTB[0] & 0x0f;
+    fileData[STB_USER_CODE1_ADDR + 3] = userCodeSTB[1] & 0x0f;
+    fileData[STB_USER_CODE2_ADDR + 2] = userCodeSTB[2] & 0x0f;
+    fileData[STB_USER_CODE2_ADDR + 3] = userCodeSTB[3] & 0x0f;
+    fileData[STB_USER_CODE3_ADDR + 2] = userCodeSTB[4] & 0x0f;
+    fileData[STB_USER_CODE3_ADDR + 3] = userCodeSTB[5] & 0x0f;
+    fileData[STB_USER_CODE4_ADDR + 2] = userCodeSTB[6] & 0x0f;
+    fileData[STB_USER_CODE4_ADDR + 3] = userCodeSTB[7] & 0x0f;
+
+    fileData[TV_USER_CODE1_ADDR + 2] = userCodeTV[0] & 0x0f;
+    fileData[TV_USER_CODE1_ADDR + 3] = userCodeTV[1] & 0x0f;
+    fileData[TV_USER_CODE2_ADDR + 2] = userCodeTV[2] & 0x0f;
+    fileData[TV_USER_CODE2_ADDR + 3] = userCodeTV[3] & 0x0f;
+    fileData[TV_USER_CODE3_ADDR + 2] = userCodeTV[4] & 0x0f;
+    fileData[TV_USER_CODE3_ADDR + 3] = userCodeTV[5] & 0x0f;
+    fileData[TV_USER_CODE4_ADDR + 2] = userCodeTV[6] & 0x0f;
+    fileData[TV_USER_CODE4_ADDR + 3] = userCodeTV[7] & 0x0f;
+    /* 写入格式值 */
+    index = getFormatNum(ui->comboBox_STB_Format->currentText());
+    if (index == 100) return;
+    fileData[STB_USER_FORMAT_ADDR + 2] = (index & 0xf0) >> 4;
+    fileData[STB_USER_FORMAT_ADDR + 3] = index & 0x0f;
+
+    index = getFormatNum(ui->comboBox_TV_Format->currentText());
+    if (index == 100) return;
+    fileData[TV_USER_FORMAT_ADDR + 2] = (index & 0xf0) >> 4;
+    fileData[TV_USER_FORMAT_ADDR + 3] = index & 0x0f;
+
     /* 写入学习按键键值 */
-    index = 16292;
-    for (uint8_t j = 0; j < 7; j ++) {
+    index = LEARN_KEY_ADDR;
+    for (uint8_t j = 0; j < 10; j ++) {
         index ++;
         index ++;
         fileData[index++] = (learnKeyList[j] & 0xf0) >> 4;
         fileData[index++] = learnKeyList[j] & 0x0f;
     }
 
+    /* 修改红灯闪烁方法 */
+    uint16_t lightOnAddr = (LIGHT_ON_M_ADDR - 100)/4;
+    uint16_t lightOffAddr = (LIGHT_OFF_M_ADDR - 100)/4;
+    if (ui->comboBox_A->currentText() == "长亮") {
+        fileData[LEARN_KEY_PRESS_ADDR + 1] = (lightOnAddr & 0x0f00) >> 8;
+        fileData[LEARN_KEY_PRESS_ADDR + 2] = (lightOnAddr & 0x00f0) >> 4;
+        fileData[LEARN_KEY_PRESS_ADDR + 3] = lightOnAddr & 0x000f;
+    } else {
+        fileData[LEARN_KEY_PRESS_ADDR + 1] = (lightOffAddr & 0x0f00) >> 8;
+        fileData[LEARN_KEY_PRESS_ADDR + 2] = (lightOffAddr & 0x00f0) >> 4;
+        fileData[LEARN_KEY_PRESS_ADDR + 3] = lightOffAddr & 0x000f;
+    }
+    if (ui->comboBox_B->currentText() == "长亮") {
+        fileData[LEARN_KEY_FREE_ADDR + 1] = (lightOnAddr & 0x0f00) >> 8;
+        fileData[LEARN_KEY_FREE_ADDR + 2] = (lightOnAddr & 0x00f0) >> 4;
+        fileData[LEARN_KEY_FREE_ADDR + 3] = lightOnAddr & 0x000f;
+    } else {
+        fileData[LEARN_KEY_FREE_ADDR + 1] = (lightOffAddr & 0x0f00) >> 8;
+        fileData[LEARN_KEY_FREE_ADDR + 2] = (lightOffAddr & 0x00f0) >> 4;
+        fileData[LEARN_KEY_FREE_ADDR + 3] = lightOffAddr & 0x000f;
+    }
+    if (ui->comboBox_C->currentText() == "长亮") {
+        fileData[LEARN_WAIT_IR_ADDR + 1] = (lightOnAddr & 0x0f00) >> 8;
+        fileData[LEARN_WAIT_IR_ADDR + 2] = (lightOnAddr & 0x00f0) >> 4;
+        fileData[LEARN_WAIT_IR_ADDR + 3] = lightOnAddr & 0x000f;
+    } else {
+        fileData[LEARN_WAIT_IR_ADDR + 1] = (lightOffAddr & 0x0f00) >> 8;
+        fileData[LEARN_WAIT_IR_ADDR + 2] = (lightOffAddr & 0x00f0) >> 4;
+        fileData[LEARN_WAIT_IR_ADDR + 3] = lightOffAddr & 0x000f;
+    }
+
+    /* 修改小红灯亮灭灯程序 */
+    uint16_t dataBuff;
+    if (ui->comboBox_LED->currentText() == "红灯接14脚") {
+        /* 设置14脚亮灯 */
+        dataBuff = setStateIO(14, OutState);
+        fileData[LIGHT_ON_M_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+        fileData[LIGHT_ON_M_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+        fileData[LIGHT_ON_M_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+        fileData[LIGHT_ON_M_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+        dataBuff = setLevelIO(14, lowLevel);
+        fileData[LIGHT_ON_D_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+        fileData[LIGHT_ON_D_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+        fileData[LIGHT_ON_D_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+        fileData[LIGHT_ON_D_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+        /* 设置14脚灭灯 */
+        dataBuff = setStateIO(14, OutState);
+        fileData[LIGHT_OFF_M_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+        fileData[LIGHT_OFF_M_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+        fileData[LIGHT_OFF_M_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+        fileData[LIGHT_OFF_M_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+        dataBuff = setLevelIO(14, highLevel);
+        fileData[LIGHT_OFF_D_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+        fileData[LIGHT_OFF_D_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+        fileData[LIGHT_OFF_D_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+        fileData[LIGHT_OFF_D_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+    } else {
+        /* 设置2脚亮灯 */
+        dataBuff = setStateIO(2, OutState);
+        fileData[LIGHT_ON_M_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+        fileData[LIGHT_ON_M_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+        fileData[LIGHT_ON_M_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+        fileData[LIGHT_ON_M_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+        dataBuff = setLevelIO(2, lowLevel);
+        fileData[LIGHT_ON_D_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+        fileData[LIGHT_ON_D_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+        fileData[LIGHT_ON_D_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+        fileData[LIGHT_ON_D_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+        /* 设置2脚灭灯 */
+        dataBuff = setStateIO(2, OutState);
+        fileData[LIGHT_OFF_M_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+        fileData[LIGHT_OFF_M_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+        fileData[LIGHT_OFF_M_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+        fileData[LIGHT_OFF_M_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+        dataBuff = setLevelIO(2, highLevel);
+        fileData[LIGHT_OFF_D_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+        fileData[LIGHT_OFF_D_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+        fileData[LIGHT_OFF_D_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+        fileData[LIGHT_OFF_D_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+    }
+    /* 学习设置键 */
+    fileData[SET_KEY_ADDR1 + 2] = (setKeyValue & 0xf0) >> 4;
+    fileData[SET_KEY_ADDR1 + 3] = setKeyValue & 0x0f;
+    fileData[SET_KEY_ADDR2 + 2] = (setKeyValue & 0xf0) >> 4;
+    fileData[SET_KEY_ADDR2 + 3] = setKeyValue & 0x0f;
+    fileData[SET_KEY_ADDR3 + 2] = (setKeyValue & 0xf0) >> 4;
+    fileData[SET_KEY_ADDR3 + 3] = setKeyValue & 0x0f;
+    fileData[SET_KEY_ADDR4 + 2] = (setKeyValue & 0xf0) >> 4;
+    fileData[SET_KEY_ADDR4 + 3] = setKeyValue & 0x0f;
+    /* 学习退出IO口设置 */
+    dataBuff = setStateIO(listenIO[setKeyValue][0],OutState);
+    fileData[SET_OUTPUT_ADDR1 + 0] = (dataBuff & 0xf000) >> 12;
+    fileData[SET_OUTPUT_ADDR1 + 1] = (dataBuff & 0x0f00) >> 8;
+    fileData[SET_OUTPUT_ADDR1 + 2] = (dataBuff & 0x00f0) >> 4;
+    fileData[SET_OUTPUT_ADDR1 + 3] = (dataBuff & 0x000f) >> 0;  //写入指令 控制io状态
+    dataBuff = setLevelIO(listenIO[setKeyValue][0],lowLevel);
+    fileData[SET_OUTPUT_ADDR2 + 0] = (dataBuff & 0xf000) >> 12;
+    fileData[SET_OUTPUT_ADDR2 + 1] = (dataBuff & 0x0f00) >> 8;
+    fileData[SET_OUTPUT_ADDR2 + 2] = (dataBuff & 0x00f0) >> 4;
+    fileData[SET_OUTPUT_ADDR2 + 3] = (dataBuff & 0x000f) >> 0;
+    dataBuff = setStateIO(listenIO[setKeyValue][1],inState);
+    fileData[SET_OUTPUT_ADDR3 + 0] = (dataBuff & 0xf000) >> 12;
+    fileData[SET_OUTPUT_ADDR3 + 1] = (dataBuff & 0x0f00) >> 8;
+    fileData[SET_OUTPUT_ADDR3 + 2] = (dataBuff & 0x00f0) >> 4;
+    fileData[SET_OUTPUT_ADDR3 + 3] = (dataBuff & 0x000f) >> 0;
+    dataBuff = setLevelIO(listenIO[setKeyValue][1],lowLevel);
+    fileData[SET_OUTPUT_ADDR4 + 0] = (dataBuff & 0xf000) >> 12;
+    fileData[SET_OUTPUT_ADDR4 + 1] = (dataBuff & 0x0f00) >> 8;
+    fileData[SET_OUTPUT_ADDR4 + 2] = (dataBuff & 0x00f0) >> 4;
+    fileData[SET_OUTPUT_ADDR4 + 3] = (dataBuff & 0x000f) >> 0;
+
+    dataBuff = judgeIO(listenIO[setKeyValue][1]);
+    fileData[SET_INPUT_ADDR + 0] = (dataBuff & 0xf000) >> 12;
+    fileData[SET_INPUT_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
+    fileData[SET_INPUT_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
+    fileData[SET_INPUT_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+
+    /* 生成校验码 */
     verifyCode = calculate_verifycode(fileData);
     QDateTime current_time = QDateTime::currentDateTime();
     QString StrCurrentTime = current_time.toString("yyyyMMdd-hhmmss");
@@ -186,7 +334,6 @@ void MainWindow::on_pushButton_3_clicked()
         ui->label_064->setText("K64");
         ui->label_065->setText("K65");
         ui->label_066->setText("K66");
-
     } else {
         ui->pushButton_3->setText("显示连接");
         ui->label_001->setText("3-4"); //K01
@@ -255,14 +402,12 @@ void MainWindow::on_pushButton_3_clicked()
         ui->label_064->setText("11-1"); //K64
         ui->label_065->setText("12-1"); //K65
         ui->label_066->setText("13-1"); //K66
-
     }
-
-
 }
 
 void MainWindow::on_pushButton_4_clicked()
 {
+    /*
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("文件对话框！"),
                                                     "D:",
@@ -276,37 +421,68 @@ void MainWindow::on_pushButton_4_clicked()
 
     QByteArray fileData;
     fileData = file.readAll();
+    */
 }
 
+//机顶盒用户码输入
 void MainWindow::on_lineEdit_user_STB_editingFinished()
 {
     char *stringBuff = NULL;
+    formatSTB = ui->comboBox_STB_Format->currentText();
     QByteArray user = ui->lineEdit_user_STB->text().toLatin1();
     stringBuff = user.data();
-    int length = strlen(stringBuff);
-    if (length > 4) {
-        QMessageBox::critical(NULL, "警告", "用户码超长，请检查！！！");
+    uint8_t length = strlen(stringBuff);
+    uint8_t userLength = 4;
+    if (formatSTB == "3010") userLength = 2;
+    if (formatSTB == "7051") userLength = 8;
+    if (length != userLength) {
+        QMessageBox::critical(NULL, tr("警告"), tr("用户码长度错误，请检查！！！\n"
+                                                 "当前格式为%1,用户码长度应为%2位").arg(formatSTB).arg(userLength));
         return;
     }
-    for (int i = 0; i < 4; i ++){
+    for (int i = 0; i < userLength; i ++) {
         if (stringBuff[i] >= 'a' && stringBuff[i] <= 'z') stringBuff[i] = stringBuff[i] - 32; // 将小写字母改成大写
     }
-    uint8_t tempH = 0;
-    uint8_t tempL = 0;
-    uint8_t j = 0;
-    for (int i = 0; i < length; ) {
-        tempH = char2int(stringBuff[i++]);
-        tempL = char2int(stringBuff[i++]);
-
-        if((tempH > 15) || (tempL > 15)) {
+    for (int i = 0; i < length; i ++) {
+        int temp = char2int(stringBuff[i]);
+        if((temp > 15)) {
             QMessageBox::critical(NULL, "警告", "用户码输入非法字符，请检查！！！");
             return;
         }
-        userCode[j++] = tempH * 0x10 + tempL;
+        userCodeSTB[i] = temp;
     }
-
 }
 
+//学习区用户码输入
+void MainWindow::on_lineEdit_user_TV_editingFinished()
+{
+    char *stringBuff = NULL;
+    formatTV = ui->comboBox_TV_Format->currentText();
+    QByteArray user = ui->lineEdit_user_TV->text().toLatin1();
+    stringBuff = user.data();
+    uint8_t length = strlen(stringBuff);
+    uint8_t userLength = 4;
+    if (formatTV == "3010") userLength = 2;
+    if (formatTV == "7051") userLength = 8;
+    if (length != userLength) {
+        QMessageBox::critical(NULL, tr("警告"), tr("用户码长度错误，请检查！！！\n"
+                                                 "当前格式为%1,用户码长度应为%2位").arg(formatTV).arg(userLength));
+        return;
+    }
+    for (int i = 0; i < userLength; i ++) {
+        if (stringBuff[i] >= 'a' && stringBuff[i] <= 'z') stringBuff[i] = stringBuff[i] - 32; // 将小写字母改成大写
+    }
+    for (int i = 0; i < length; i ++) {
+        int temp = char2int(stringBuff[i]);
+        if((temp > 15)) {
+            QMessageBox::critical(NULL, "警告", "用户码输入非法字符，请检查！！！");
+            return;
+        }
+        userCodeTV[i] = temp;
+    }
+}
+
+//键值输入
 void MainWindow::on_lineEdit_001_editingFinished()
 {
     if(!edit_flag) {
