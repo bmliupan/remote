@@ -1,7 +1,7 @@
 #ifndef FUNCTION_H
 #define FUNCTION_H
 #include <QApplication>
-#include "inc/data.h"
+#include "data.h"
 
 int char2int(char data);
 bool checkInput(QString text, int num);

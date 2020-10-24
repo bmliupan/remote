@@ -1,12 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "inc/function.h"
-#include "inc/data.h"
+#include "function.h"
+#include "data.h"
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDataStream>
+#include <QPainter>
 #include <qdatetime.h>
+#include <QSignalMapper>
 #include "ltFileParameter.h"
+
+int a[][2] = {};
+int hightC = 0;
+int widthC = 0;
+QLineEdit * lEdit[78];
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,12 +24,172 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_B->setStyleSheet("color:red;");
     ui->label_C->setStyleSheet("color:red;");
     setWindowIcon(QIcon(":/icon/mcu.ico"));
+    lEdit[0] = qobject_cast<QLineEdit *>(ui->lineEdit_001);
+    lEdit[1] = qobject_cast<QLineEdit *>(ui->lineEdit_002);
+    lEdit[2] = qobject_cast<QLineEdit *>(ui->lineEdit_003);
+    lEdit[3] = qobject_cast<QLineEdit *>(ui->lineEdit_004);
+    lEdit[4] = qobject_cast<QLineEdit *>(ui->lineEdit_005);
+    lEdit[5] = qobject_cast<QLineEdit *>(ui->lineEdit_006);
+    lEdit[6] = qobject_cast<QLineEdit *>(ui->lineEdit_007);
+    lEdit[7] = qobject_cast<QLineEdit *>(ui->lineEdit_008);
+    lEdit[8] = qobject_cast<QLineEdit *>(ui->lineEdit_009);
+    lEdit[9] = qobject_cast<QLineEdit *>(ui->lineEdit_010);
+    lEdit[10] = qobject_cast<QLineEdit *>(ui->lineEdit_011);
+    lEdit[11] = qobject_cast<QLineEdit *>(ui->lineEdit_012);
+    lEdit[12] = qobject_cast<QLineEdit *>(ui->lineEdit_013);
+    lEdit[13] = qobject_cast<QLineEdit *>(ui->lineEdit_014);
+    lEdit[14] = qobject_cast<QLineEdit *>(ui->lineEdit_015);
+    lEdit[15] = qobject_cast<QLineEdit *>(ui->lineEdit_016);
+    lEdit[16] = qobject_cast<QLineEdit *>(ui->lineEdit_017);
+    lEdit[17] = qobject_cast<QLineEdit *>(ui->lineEdit_018);
+    lEdit[18] = qobject_cast<QLineEdit *>(ui->lineEdit_019);
+    lEdit[19] = qobject_cast<QLineEdit *>(ui->lineEdit_020);
+    lEdit[20] = qobject_cast<QLineEdit *>(ui->lineEdit_021);
+    lEdit[21] = qobject_cast<QLineEdit *>(ui->lineEdit_022);
+    lEdit[22] = qobject_cast<QLineEdit *>(ui->lineEdit_023);
+    lEdit[23] = qobject_cast<QLineEdit *>(ui->lineEdit_024);
+    lEdit[24] = qobject_cast<QLineEdit *>(ui->lineEdit_025);
+    lEdit[25] = qobject_cast<QLineEdit *>(ui->lineEdit_026);
+    lEdit[26] = qobject_cast<QLineEdit *>(ui->lineEdit_027);
+    lEdit[27] = qobject_cast<QLineEdit *>(ui->lineEdit_028);
+    lEdit[28] = qobject_cast<QLineEdit *>(ui->lineEdit_029);
+    lEdit[29] = qobject_cast<QLineEdit *>(ui->lineEdit_030);
+    lEdit[30] = qobject_cast<QLineEdit *>(ui->lineEdit_031);
+    lEdit[31] = qobject_cast<QLineEdit *>(ui->lineEdit_032);
+    lEdit[32] = qobject_cast<QLineEdit *>(ui->lineEdit_033);
+    lEdit[33] = qobject_cast<QLineEdit *>(ui->lineEdit_034);
+    lEdit[34] = qobject_cast<QLineEdit *>(ui->lineEdit_035);
+    lEdit[35] = qobject_cast<QLineEdit *>(ui->lineEdit_036);
+    lEdit[36] = qobject_cast<QLineEdit *>(ui->lineEdit_037);
+    lEdit[37] = qobject_cast<QLineEdit *>(ui->lineEdit_038);
+    lEdit[38] = qobject_cast<QLineEdit *>(ui->lineEdit_039);
+    lEdit[39] = qobject_cast<QLineEdit *>(ui->lineEdit_040);
+    lEdit[40] = qobject_cast<QLineEdit *>(ui->lineEdit_041);
+    lEdit[41] = qobject_cast<QLineEdit *>(ui->lineEdit_042);
+    lEdit[42] = qobject_cast<QLineEdit *>(ui->lineEdit_043);
+    lEdit[43] = qobject_cast<QLineEdit *>(ui->lineEdit_044);
+    lEdit[44] = qobject_cast<QLineEdit *>(ui->lineEdit_045);
+    lEdit[45] = qobject_cast<QLineEdit *>(ui->lineEdit_046);
+    lEdit[46] = qobject_cast<QLineEdit *>(ui->lineEdit_047);
+    lEdit[47] = qobject_cast<QLineEdit *>(ui->lineEdit_048);
+    lEdit[48] = qobject_cast<QLineEdit *>(ui->lineEdit_049);
+    lEdit[49] = qobject_cast<QLineEdit *>(ui->lineEdit_050);
+    lEdit[50] = qobject_cast<QLineEdit *>(ui->lineEdit_051);
+    lEdit[51] = qobject_cast<QLineEdit *>(ui->lineEdit_052);
+    lEdit[52] = qobject_cast<QLineEdit *>(ui->lineEdit_053);
+    lEdit[53] = qobject_cast<QLineEdit *>(ui->lineEdit_054);
+    lEdit[54] = qobject_cast<QLineEdit *>(ui->lineEdit_055);
+    lEdit[55] = qobject_cast<QLineEdit *>(ui->lineEdit_056);
+    lEdit[56] = qobject_cast<QLineEdit *>(ui->lineEdit_057);
+    lEdit[57] = qobject_cast<QLineEdit *>(ui->lineEdit_058);
+    lEdit[58] = qobject_cast<QLineEdit *>(ui->lineEdit_059);
+    lEdit[59] = qobject_cast<QLineEdit *>(ui->lineEdit_060);
+    lEdit[60] = qobject_cast<QLineEdit *>(ui->lineEdit_061);
+    lEdit[61] = qobject_cast<QLineEdit *>(ui->lineEdit_062);
+    lEdit[62] = qobject_cast<QLineEdit *>(ui->lineEdit_063);
+    lEdit[63] = qobject_cast<QLineEdit *>(ui->lineEdit_064);
+    lEdit[64] = qobject_cast<QLineEdit *>(ui->lineEdit_065);
+    lEdit[65] = qobject_cast<QLineEdit *>(ui->lineEdit_066);
+    lEdit[66] = qobject_cast<QLineEdit *>(ui->lineEdit_067);
+    lEdit[67] = qobject_cast<QLineEdit *>(ui->lineEdit_068);
+    lEdit[68] = qobject_cast<QLineEdit *>(ui->lineEdit_069);
+    lEdit[69] = qobject_cast<QLineEdit *>(ui->lineEdit_070);
+    lEdit[70] = qobject_cast<QLineEdit *>(ui->lineEdit_071);
+    lEdit[71] = qobject_cast<QLineEdit *>(ui->lineEdit_072);
+    lEdit[72] = qobject_cast<QLineEdit *>(ui->lineEdit_073);
+    lEdit[73] = qobject_cast<QLineEdit *>(ui->lineEdit_074);
+    lEdit[74] = qobject_cast<QLineEdit *>(ui->lineEdit_075);
+    lEdit[75] = qobject_cast<QLineEdit *>(ui->lineEdit_076);
+    lEdit[76] = qobject_cast<QLineEdit *>(ui->lineEdit_077);
+    lEdit[77] = qobject_cast<QLineEdit *>(ui->lineEdit_078);
+
+    QSignalMapper *signal_mapper = new QSignalMapper(this);
+    connect(signal_mapper, SIGNAL(mapped(const QString &)), this, SLOT(input_KeyNUM(QString)));
+    for (int i = 0; i < 78; i ++) {
+        signal_mapper->setMapping(lEdit[i], QString::number(i, 10));
+        connect(lEdit[i], SIGNAL(editingFinished()), signal_mapper, SLOT(map()));
+    }
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::input_KeyNUM(QString text)
+{
+
+    int index = text.toInt();
+    qDebug("index value is %d", index);
+    lEdit[index]->setStyleSheet("background-color:rgba(255,0,0,255)");
+    if (lEdit[index] == nullptr) return;
+    if (!edit_flag) {
+        lEdit[index]->setStyleSheet("background-color:rgba(255,255,255,255)");
+    } else {
+        lEdit[index]->setStyleSheet("background-color:rgba(255,0,0,255)");
+    }
+    if (checkInput(ui->lineEdit_001->text(), index) == false) {
+    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
+    }
+
+    return;
+}
+
+ void MainWindow::paintEvent(QPaintEvent *)
+ {
+     if(hightC == ui->lineEdit_001->size().rheight() &&
+         widthC == ui->lineEdit_001->size().rwidth())return;
+     QPainter painter(this);
+     QPen pen;
+     pen.setColor(QColor(0,80,128));
+     pen.setWidth(4);
+     painter.setPen(pen);
+     int i = 0;
+     QObjectList list = children();
+     foreach( QObject *obj , list)
+     {
+         if (obj->metaObject()->className() == QStringLiteral("QWidget")){
+             QObjectList list2 = obj->children();
+             foreach (QObject *obj1, list2){
+                 if (obj1->inherits("QLineEdit")){
+                     QLineEdit *b = qobject_cast<QLineEdit*>(obj1);
+                     if (b == ui->lineEdit_user_TV) continue;
+                     if (b == ui->lineEdit_user_STB) continue;
+                     a[i][0] = b->geometry().x();
+                     a[i][1] = b->geometry().y();
+                     i ++;
+                 }
+             }
+         }
+     }
+
+     hightC = ui->lineEdit_001->size().rheight();
+     widthC = ui->lineEdit_001->size().rwidth();
+     int xInterval = ui->lineEdit_003->geometry().x() - ui->lineEdit_002->geometry().x();
+     int yInterval = ui->lineEdit_002->geometry().y() - ui->lineEdit_001->geometry().y();
+     int num = i;
+     for (i = 0; i < num; i++) {
+         /* 控件上方线段 */
+         int xStart = a[i][0] + widthC/2;
+         int yStart = a[i][1];
+         int xEnd = xStart;
+         int yEnd = a[i][1] - yInterval + hightC/2;
+         painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
+         /* 控件下方线段 */
+
+         /* 控件左边线段 */
+         xStart = a[i][0];
+         yStart = a[i][1] + hightC/2;
+         xEnd = a[i][0] + xInterval/2 - 2;// - width/2;
+         yEnd = yStart;
+         painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
+         /* 控件右边线段 */
+
+
+
+     }
+   painter.drawLine(QPointF(ui->lineEdit_001->geometry().x(), ui->lineEdit_001->geometry().y()), QPointF(ui->lineEdit_001->geometry().x(), ui->lineEdit_001->geometry().y()+100));
+ }
 
 //生成烧录文件
 void MainWindow::on_pushButton_2_clicked()
@@ -481,883 +648,4 @@ void MainWindow::on_lineEdit_user_TV_editingFinished()
         userCodeTV[i] = temp;
     }
 }
-
-//键值输入
-void MainWindow::on_lineEdit_001_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_001->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_001->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_001->text(), 0) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_002_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_002->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_002->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_002->text(), 1) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_003_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_003->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_003->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_003->text(), 2) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_004_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_004->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_004->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_004->text(), 3) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_005_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_005->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_005->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_005->text(), 4) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_006_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_006->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_006->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_006->text(), 5) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_007_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_007->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_007->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_007->text(), 6) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_008_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_008->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_008->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_008->text(), 7) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_009_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_009->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_009->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_009->text(), 8) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_010_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_010->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_010->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_010->text(), 9) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_011_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_011->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_011->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_011->text(), 10) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_012_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_012->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_012->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_012->text(), 11) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_013_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_013->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_013->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_013->text(), 12) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_014_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_014->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_014->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_014->text(), 13) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_015_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_015->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_015->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_015->text(), 14) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_016_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_016->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_016->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_016->text(), 15) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_017_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_017->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_017->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_017->text(), 16) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_018_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_018->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_018->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_018->text(), 17) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_019_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_019->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_019->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_019->text(), 18) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_020_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_020->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_020->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_020->text(), 19) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_021_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_021->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_021->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_021->text(), 20) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_022_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_022->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_022->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_022->text(), 21) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_023_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_023->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_023->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_023->text(), 22) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_024_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_024->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_024->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_024->text(), 23) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_025_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_025->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_025->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-
-    if(checkInput(ui->lineEdit_025->text(), 24) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_026_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_026->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_026->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_026->text(), 25) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_027_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_027->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_027->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_027->text(), 26) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_028_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_028->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_028->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_028->text(), 27) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_029_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_029->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_029->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_029->text(), 28) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_030_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_030->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_030->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_030->text(), 29) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_031_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_031->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_031->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_031->text(), 30) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_032_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_032->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_032->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_032->text(), 31) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_033_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_033->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_033->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_033->text(), 32) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_034_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_034->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_034->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_034->text(), 33) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_035_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_035->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_035->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_035->text(), 34) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_036_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_036->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_036->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_036->text(), 35) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_037_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_037->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_037->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_037->text(), 36) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_038_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_038->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_038->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_038->text(), 37) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_039_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_039->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_039->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_039->text(), 38) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_040_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_040->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_040->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_040->text(), 39) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_041_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_041->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_041->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-
-    if(checkInput(ui->lineEdit_041->text(), 40) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_042_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_042->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_042->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_042->text(), 41) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_043_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_043->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_043->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_043->text(), 42) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_044_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_044->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_044->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_044->text(), 43) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_045_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_045->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_045->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_045->text(), 44) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_046_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_046->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_046->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_046->text(), 45) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_047_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_047->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_047->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_047->text(), 46) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_048_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_048->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_048->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_048->text(), 47) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_049_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_049->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_049->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_049->text(), 48) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_050_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_050->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_050->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_050->text(), 49) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_051_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_051->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_051->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_051->text(), 50) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_052_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_052->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_052->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_052->text(), 51) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_053_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_053->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_053->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_053->text(), 52) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_054_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_054->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_054->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_054->text(), 53) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_055_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_055->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_055->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_055->text(), 54) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_056_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_056->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_056->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_056->text(), 55) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_057_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_057->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_057->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_057->text(), 56) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_058_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_058->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_058->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_058->text(), 57) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_059_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_059->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_059->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_059->text(), 58) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_060_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_060->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_060->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_060->text(), 59) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_061_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_061->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_061->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_061->text(), 60) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_062_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_062->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_062->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_062->text(), 61) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_063_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_063->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_063->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_063->text(), 62) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_064_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_064->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_064->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_064->text(), 63) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_065_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_065->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_065->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_065->text(), 64) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-void MainWindow::on_lineEdit_066_editingFinished()
-{
-    if(!edit_flag) {
-        ui->lineEdit_066->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        ui->lineEdit_066->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
-
-    if(checkInput(ui->lineEdit_066->text(), 65) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

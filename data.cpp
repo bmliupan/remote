@@ -1,4 +1,4 @@
-#include "inc/data.h"
+#include "data.h"
 
 bool toggleState = true;
 bool display_flag = true; //序号显示与否标记位

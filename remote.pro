@@ -19,12 +19,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    src/data.cpp \
-    src/function.cpp
+    data.cpp \
+    function.cpp
 
 HEADERS += \
-    inc/data.h \
-    inc/function.h \
+    data.h \
+    function.h \
     ltFileParameter.h \
     mainwindow.h
 

@@ -1,4 +1,4 @@
-#include "inc/function.h"
+#include "function.h"
 #include <QFileDialog>
 #include <QDataStream>
 #include <qdatetime.h>
