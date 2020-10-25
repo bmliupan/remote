@@ -10,10 +10,10 @@
 #include <QSignalMapper>
 #include "ltFileParameter.h"
 
-int a[][2] = {};
 int hightC = 0;
 int widthC = 0;
-QLineEdit * lEdit[78];
+QString pinA[] = {"2","3","4","5","6","7","8","9","10","11","12","13","1"};
+QString pinB[] = {"3","4","5","6","7","8","9","10","11","12","13","14","1"};
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -102,6 +102,98 @@ MainWindow::MainWindow(QWidget *parent)
     lEdit[75] = qobject_cast<QLineEdit *>(ui->lineEdit_076);
     lEdit[76] = qobject_cast<QLineEdit *>(ui->lineEdit_077);
     lEdit[77] = qobject_cast<QLineEdit *>(ui->lineEdit_078);
+    keyLabel[0] = qobject_cast<QLabel *>(ui->label_001);
+    keyLabel[1] = qobject_cast<QLabel *>(ui->label_002);
+    keyLabel[2] = qobject_cast<QLabel *>(ui->label_003);
+    keyLabel[3] = qobject_cast<QLabel *>(ui->label_004);
+    keyLabel[4] = qobject_cast<QLabel *>(ui->label_005);
+    keyLabel[5] = qobject_cast<QLabel *>(ui->label_006);
+    keyLabel[6] = qobject_cast<QLabel *>(ui->label_007);
+    keyLabel[7] = qobject_cast<QLabel *>(ui->label_008);
+    keyLabel[8] = qobject_cast<QLabel *>(ui->label_009);
+    keyLabel[9] = qobject_cast<QLabel *>(ui->label_010);
+    keyLabel[10] = qobject_cast<QLabel *>(ui->label_011);
+    keyLabel[11] = qobject_cast<QLabel *>(ui->label_012);
+    keyLabel[12] = qobject_cast<QLabel *>(ui->label_013);
+    keyLabel[13] = qobject_cast<QLabel *>(ui->label_014);
+    keyLabel[14] = qobject_cast<QLabel *>(ui->label_015);
+    keyLabel[15] = qobject_cast<QLabel *>(ui->label_016);
+    keyLabel[16] = qobject_cast<QLabel *>(ui->label_017);
+    keyLabel[17] = qobject_cast<QLabel *>(ui->label_018);
+    keyLabel[18] = qobject_cast<QLabel *>(ui->label_019);
+    keyLabel[19] = qobject_cast<QLabel *>(ui->label_020);
+    keyLabel[20] = qobject_cast<QLabel *>(ui->label_021);
+    keyLabel[21] = qobject_cast<QLabel *>(ui->label_022);
+    keyLabel[22] = qobject_cast<QLabel *>(ui->label_023);
+    keyLabel[23] = qobject_cast<QLabel *>(ui->label_024);
+    keyLabel[24] = qobject_cast<QLabel *>(ui->label_025);
+    keyLabel[25] = qobject_cast<QLabel *>(ui->label_026);
+    keyLabel[26] = qobject_cast<QLabel *>(ui->label_027);
+    keyLabel[27] = qobject_cast<QLabel *>(ui->label_028);
+    keyLabel[28] = qobject_cast<QLabel *>(ui->label_029);
+    keyLabel[29] = qobject_cast<QLabel *>(ui->label_030);
+    keyLabel[30] = qobject_cast<QLabel *>(ui->label_031);
+    keyLabel[31] = qobject_cast<QLabel *>(ui->label_032);
+    keyLabel[32] = qobject_cast<QLabel *>(ui->label_033);
+    keyLabel[33] = qobject_cast<QLabel *>(ui->label_034);
+    keyLabel[34] = qobject_cast<QLabel *>(ui->label_035);
+    keyLabel[35] = qobject_cast<QLabel *>(ui->label_036);
+    keyLabel[36] = qobject_cast<QLabel *>(ui->label_037);
+    keyLabel[37] = qobject_cast<QLabel *>(ui->label_038);
+    keyLabel[38] = qobject_cast<QLabel *>(ui->label_039);
+    keyLabel[39] = qobject_cast<QLabel *>(ui->label_040);
+    keyLabel[40] = qobject_cast<QLabel *>(ui->label_041);
+    keyLabel[41] = qobject_cast<QLabel *>(ui->label_042);
+    keyLabel[42] = qobject_cast<QLabel *>(ui->label_043);
+    keyLabel[43] = qobject_cast<QLabel *>(ui->label_044);
+    keyLabel[44] = qobject_cast<QLabel *>(ui->label_045);
+    keyLabel[45] = qobject_cast<QLabel *>(ui->label_046);
+    keyLabel[46] = qobject_cast<QLabel *>(ui->label_047);
+    keyLabel[47] = qobject_cast<QLabel *>(ui->label_048);
+    keyLabel[48] = qobject_cast<QLabel *>(ui->label_049);
+    keyLabel[49] = qobject_cast<QLabel *>(ui->label_050);
+    keyLabel[50] = qobject_cast<QLabel *>(ui->label_051);
+    keyLabel[51] = qobject_cast<QLabel *>(ui->label_052);
+    keyLabel[52] = qobject_cast<QLabel *>(ui->label_053);
+    keyLabel[53] = qobject_cast<QLabel *>(ui->label_054);
+    keyLabel[54] = qobject_cast<QLabel *>(ui->label_055);
+    keyLabel[55] = qobject_cast<QLabel *>(ui->label_056);
+    keyLabel[56] = qobject_cast<QLabel *>(ui->label_057);
+    keyLabel[57] = qobject_cast<QLabel *>(ui->label_058);
+    keyLabel[58] = qobject_cast<QLabel *>(ui->label_059);
+    keyLabel[59] = qobject_cast<QLabel *>(ui->label_060);
+    keyLabel[60] = qobject_cast<QLabel *>(ui->label_061);
+    keyLabel[61] = qobject_cast<QLabel *>(ui->label_062);
+    keyLabel[62] = qobject_cast<QLabel *>(ui->label_063);
+    keyLabel[63] = qobject_cast<QLabel *>(ui->label_064);
+    keyLabel[64] = qobject_cast<QLabel *>(ui->label_065);
+    keyLabel[65] = qobject_cast<QLabel *>(ui->label_066);
+    keyLabel[66] = qobject_cast<QLabel *>(ui->label_067);
+    keyLabel[67] = qobject_cast<QLabel *>(ui->label_068);
+    keyLabel[68] = qobject_cast<QLabel *>(ui->label_069);
+    keyLabel[69] = qobject_cast<QLabel *>(ui->label_070);
+    keyLabel[70] = qobject_cast<QLabel *>(ui->label_071);
+    keyLabel[71] = qobject_cast<QLabel *>(ui->label_072);
+    keyLabel[72] = qobject_cast<QLabel *>(ui->label_073);
+    keyLabel[73] = qobject_cast<QLabel *>(ui->label_074);
+    keyLabel[74] = qobject_cast<QLabel *>(ui->label_075);
+    keyLabel[75] = qobject_cast<QLabel *>(ui->label_076);
+    keyLabel[76] = qobject_cast<QLabel *>(ui->label_077);
+    keyLabel[77] = qobject_cast<QLabel *>(ui->label_078);
+    pinLabel[0] = qobject_cast<QLabel *>(ui->labela);
+    pinLabel[1] = qobject_cast<QLabel *>(ui->labelb);
+    pinLabel[2] = qobject_cast<QLabel *>(ui->labelc);
+    pinLabel[3] = qobject_cast<QLabel *>(ui->labeld);
+    pinLabel[4] = qobject_cast<QLabel *>(ui->labele);
+    pinLabel[5] = qobject_cast<QLabel *>(ui->labelf);
+    pinLabel[6] = qobject_cast<QLabel *>(ui->labelg);
+    pinLabel[7] = qobject_cast<QLabel *>(ui->labelh);
+    pinLabel[8] = qobject_cast<QLabel *>(ui->labeli);
+    pinLabel[9] = qobject_cast<QLabel *>(ui->labelj);
+    pinLabel[10] = qobject_cast<QLabel *>(ui->labelk);
+    pinLabel[11] = qobject_cast<QLabel *>(ui->labell);
+    pinLabel[12] = qobject_cast<QLabel *>(ui->labelm);
+
 
     QSignalMapper *signal_mapper = new QSignalMapper(this);
     connect(signal_mapper, SIGNAL(mapped(const QString &)), this, SLOT(input_KeyNUM(QString)));
@@ -137,58 +229,63 @@ void MainWindow::input_KeyNUM(QString text)
 
  void MainWindow::paintEvent(QPaintEvent *)
  {
-     if(hightC == ui->lineEdit_001->size().rheight() &&
-         widthC == ui->lineEdit_001->size().rwidth())return;
      QPainter painter(this);
      QPen pen;
      pen.setColor(QColor(0,80,128));
      pen.setWidth(4);
      painter.setPen(pen);
      int i = 0;
-     QObjectList list = children();
-     foreach( QObject *obj , list)
-     {
-         if (obj->metaObject()->className() == QStringLiteral("QWidget")){
-             QObjectList list2 = obj->children();
-             foreach (QObject *obj1, list2){
-                 if (obj1->inherits("QLineEdit")){
-                     QLineEdit *b = qobject_cast<QLineEdit*>(obj1);
-                     if (b == ui->lineEdit_user_TV) continue;
-                     if (b == ui->lineEdit_user_STB) continue;
-                     a[i][0] = b->geometry().x();
-                     a[i][1] = b->geometry().y();
-                     i ++;
-                 }
-             }
-         }
-     }
+     int a[12][2] = {};
+
+     a[0][0] = lEdit[0]->geometry().x();
+     a[0][1] = lEdit[0]->geometry().y();
+     a[1][0] = lEdit[2]->geometry().x();
+     a[1][1] = lEdit[2]->geometry().y();
+     a[2][0] = lEdit[5]->geometry().x();
+     a[2][1] = lEdit[5]->geometry().y();
+     a[3][0] = lEdit[9]->geometry().x();
+     a[3][1] = lEdit[9]->geometry().y();
+     a[4][0] = lEdit[14]->geometry().x();
+     a[4][1] = lEdit[14]->geometry().y();
+     a[5][0] = lEdit[20]->geometry().x();
+     a[5][1] = lEdit[20]->geometry().y();
+     a[6][0] = lEdit[27]->geometry().x();
+     a[6][1] = lEdit[27]->geometry().y();
+     a[7][0] = lEdit[35]->geometry().x();
+     a[7][1] = lEdit[35]->geometry().y();
+     a[8][0] = lEdit[44]->geometry().x();
+     a[8][1] = lEdit[44]->geometry().y();
+     a[9][0] = lEdit[54]->geometry().x();
+     a[9][1] = lEdit[54]->geometry().y();
+     a[10][0] = lEdit[65]->geometry().x();
+     a[10][1] = lEdit[65]->geometry().y();
+     a[11][0] = lEdit[77]->geometry().x();
+     a[11][1] = lEdit[77]->geometry().y();
 
      hightC = ui->lineEdit_001->size().rheight();
      widthC = ui->lineEdit_001->size().rwidth();
-     int xInterval = ui->lineEdit_003->geometry().x() - ui->lineEdit_002->geometry().x();
-     int yInterval = ui->lineEdit_002->geometry().y() - ui->lineEdit_001->geometry().y();
-     int num = i;
-     for (i = 0; i < num; i++) {
-         /* 控件上方线段 */
-         int xStart = a[i][0] + widthC/2;
-         int yStart = a[i][1];
-         int xEnd = xStart;
-         int yEnd = a[i][1] - yInterval + hightC/2;
+     int xInterval = ui->lineEdit_002->geometry().x() - ui->lineEdit_003->geometry().x();
+     for (i = 0; i < 12; i++) {
+         int xStart = a[i][0] - xInterval + widthC/2;
+         int yStart = a[i][1] + hightC/2 ;
+         int xEnd = a[0][0] + widthC + 6;
+         int yEnd = yStart;
+         if (i == 11) xStart = a[i][0] + 5;
+         //画横线
          painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
-         /* 控件下方线段 */
-
-         /* 控件左边线段 */
-         xStart = a[i][0];
-         yStart = a[i][1] + hightC/2;
-         xEnd = a[i][0] + xInterval/2 - 2;// - width/2;
-         yEnd = yStart;
-         painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
-         /* 控件右边线段 */
-
-
-
+         //画竖线
+         xEnd = xStart;
+         yEnd = a[11][1];
+         if (i != 11) painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
      }
-   painter.drawLine(QPointF(ui->lineEdit_001->geometry().x(), ui->lineEdit_001->geometry().y()), QPointF(ui->lineEdit_001->geometry().x(), ui->lineEdit_001->geometry().y()+100));
+     int xStart = a[0][0] + widthC/2;
+     int yStart = a[0][1] - hightC/2 ;
+     int xEnd = a[0][0] + widthC + 6;
+     int yEnd = yStart;
+     painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
+     xEnd = xStart;
+     yEnd = a[11][1];
+     painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
  }
 
 //生成烧录文件
@@ -416,7 +513,7 @@ void MainWindow::on_pushButton_2_clicked()
 
     return;
 }
-
+//更改编辑状态
 void MainWindow::on_pushButton_1_clicked()
 {
     edit_flag = (!edit_flag)&0x01;
@@ -429,149 +526,39 @@ void MainWindow::on_pushButton_1_clicked()
     }
 
 }
-
+//更改显示连接还是按键编号
 void MainWindow::on_pushButton_3_clicked()
 {
     display_flag = !display_flag;
     if(display_flag) {
         ui->pushButton_3->setText("显示序号");
-        ui->label_001->setText("K01");
-        ui->label_002->setText("K02");
-        ui->label_003->setText("K03");
-        ui->label_004->setText("K04");
-        ui->label_005->setText("K05");
-        ui->label_006->setText("K06");
-        ui->label_007->setText("K07");
-        ui->label_008->setText("K08");
-        ui->label_009->setText("K09");
-        ui->label_010->setText("K10");
-        ui->label_011->setText("K11");
-        ui->label_012->setText("K12");
-        ui->label_013->setText("K13");
-        ui->label_014->setText("K14");
-        ui->label_015->setText("K15");
-        ui->label_016->setText("K16");
-        ui->label_017->setText("K17");
-        ui->label_018->setText("K18");
-        ui->label_019->setText("K19");
-        ui->label_020->setText("K20");
-        ui->label_021->setText("K21");
-        ui->label_022->setText("K22");
-        ui->label_023->setText("K23");
-        ui->label_024->setText("K24");
-        ui->label_025->setText("K25");
-        ui->label_026->setText("K26");
-        ui->label_027->setText("K27");
-        ui->label_028->setText("K28");
-        ui->label_029->setText("K29");
-        ui->label_030->setText("K30");
-        ui->label_031->setText("K31");
-        ui->label_032->setText("K32");
-        ui->label_033->setText("K33");
-        ui->label_034->setText("K34");
-        ui->label_035->setText("K35");
-        ui->label_036->setText("K36");
-        ui->label_037->setText("K37");
-        ui->label_038->setText("K38");
-        ui->label_039->setText("K39");
-        ui->label_040->setText("K40");
-        ui->label_041->setText("K41");
-        ui->label_042->setText("K42");
-        ui->label_043->setText("K43");
-        ui->label_044->setText("K44");
-        ui->label_045->setText("K45");
-        ui->label_046->setText("K46");
-        ui->label_047->setText("K47");
-        ui->label_048->setText("K48");
-        ui->label_049->setText("K49");
-        ui->label_050->setText("K50");
-        ui->label_051->setText("K51");
-        ui->label_052->setText("K52");
-        ui->label_053->setText("K53");
-        ui->label_054->setText("K54");
-        ui->label_055->setText("K55");
-        ui->label_056->setText("K56");
-        ui->label_057->setText("K57");
-        ui->label_058->setText("K58");
-        ui->label_059->setText("K59");
-        ui->label_060->setText("K60");
-        ui->label_061->setText("K61");
-        ui->label_062->setText("K62");
-        ui->label_063->setText("K63");
-        ui->label_064->setText("K64");
-        ui->label_065->setText("K65");
-        ui->label_066->setText("K66");
+        for (int i = 0; i < 78; i ++) {
+            QString text = "K";
+            text.append(QString::number(i + 1, 10));
+            keyLabel[i]->setText(text);
+        }
     } else {
         ui->pushButton_3->setText("显示连接");
-        ui->label_001->setText("3-4"); //K01
-        ui->label_002->setText("3-5"); //K02
-        ui->label_003->setText("4-5"); //K03
-        ui->label_004->setText("3-6"); //K04
-        ui->label_005->setText("4-6"); //K05
-        ui->label_006->setText("5-6"); //K06
-        ui->label_007->setText("3-7"); //K07
-        ui->label_008->setText("4-7"); //K08
-        ui->label_009->setText("5-7"); //K09
-        ui->label_010->setText("6-7"); //K10
-        ui->label_011->setText("3-8"); //K11
-        ui->label_012->setText("4-8"); //K12
-        ui->label_013->setText("5-8"); //K13
-        ui->label_014->setText("6-8"); //K14
-        ui->label_015->setText("7-8"); //K15
-        ui->label_016->setText("3-9"); //K16
-        ui->label_017->setText("4-9"); //K17
-        ui->label_018->setText("5-9"); //K18
-        ui->label_019->setText("6-9"); //K19
-        ui->label_020->setText("7-9"); //K20
-        ui->label_021->setText("8-9"); //K21
-        ui->label_022->setText("3-10"); //K22
-        ui->label_023->setText("4-10"); //K23
-        ui->label_024->setText("5-10"); //K24
-        ui->label_025->setText("6-10"); //K25
-        ui->label_026->setText("7-10"); //K26
-        ui->label_027->setText("8-10"); //K27
-        ui->label_028->setText("9-10"); //K28
-        ui->label_029->setText("3-11"); //K29
-        ui->label_030->setText("4-11"); //K30
-        ui->label_031->setText("5-11"); //K31
-        ui->label_032->setText("6-11"); //K32
-        ui->label_033->setText("7-11"); //K33
-        ui->label_034->setText("8-11"); //K34
-        ui->label_035->setText("9-11"); //K35
-        ui->label_036->setText("10-11"); //K36
-        ui->label_037->setText("3-12"); //K37
-        ui->label_038->setText("4-12"); //K38
-        ui->label_039->setText("5-12"); //K39
-        ui->label_040->setText("6-12"); //K40
-        ui->label_041->setText("7-12"); //K41
-        ui->label_042->setText("8-12"); //K42
-        ui->label_043->setText("9-12"); //K43
-        ui->label_044->setText("10-12"); //K44
-        ui->label_045->setText("11-12"); //K45
-        ui->label_046->setText("3-13"); //K46
-        ui->label_047->setText("4-13"); //K47
-        ui->label_048->setText("5-13"); //K48
-        ui->label_049->setText("6-13"); //K49
-        ui->label_050->setText("7-13"); //K50
-        ui->label_051->setText("8-13"); //K51
-        ui->label_052->setText("9-13"); //K52
-        ui->label_053->setText("10-13"); //K53
-        ui->label_054->setText("11-13"); //K54
-        ui->label_055->setText("12-13"); //K55
-        ui->label_056->setText("3-1"); //K56
-        ui->label_057->setText("4-1"); //K57
-        ui->label_058->setText("5-1"); //K58
-        ui->label_059->setText("6-1"); //K59
-        ui->label_060->setText("7-1"); //K60
-        ui->label_061->setText("8-1"); //K61
-        ui->label_062->setText("9-1"); //K62
-        ui->label_063->setText("10-1"); //K63
-        ui->label_064->setText("11-1"); //K64
-        ui->label_065->setText("12-1"); //K65
-        ui->label_066->setText("13-1"); //K66
+        QString * pin = nullptr;
+        if (ui->comboBox_LED->currentText() == "红灯接14脚") {
+            pin = pinA;
+        } else {
+            pin = pinB;
+        }
+        int k = 0;
+        for (int j = 0; j < 13;) {
+            for (int i = 0; i < j; i ++) {
+                QString connect = "";
+                connect.append(pin[j]);
+                connect.append("-");
+                connect.append(pin[i]);
+                keyLabel[k++]->setText(connect);
+            }
+            j ++;
+        }
     }
 }
-
+//读入lt文件
 void MainWindow::on_pushButton_4_clicked()
 {
     /*
@@ -649,3 +636,29 @@ void MainWindow::on_lineEdit_user_TV_editingFinished()
     }
 }
 
+
+void MainWindow::on_comboBox_LED_currentTextChanged()
+{
+    QString *pin;
+    if (ui->comboBox_LED->currentText() == "红灯接14脚") {
+        pin = pinA;
+    } else {
+        pin = pinB;
+    }
+    for (int i = 0; i < 13; i ++) {
+        QString s = {"Pin"};
+        s.append(pin[i]);
+        pinLabel[i]->setText(s);
+    }
+    int k = 0;
+    for (int j = 0; j < 13;) {
+        for (int i = 0; i < j; i ++) {
+            QString connect = "";
+            connect.append(pin[j]);
+            connect.append("-");
+            connect.append(pin[i]);
+            keyLabel[k++]->setText(connect);
+        }
+        j ++;
+    }
+}

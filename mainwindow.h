@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "ui_mainwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,6 +15,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QLineEdit * lEdit[78];
+    QLabel *keyLabel[78];
+    QLabel *pinLabel[13];
 public slots:
     //按键响应
     void on_pushButton_1_clicked();
@@ -27,6 +31,9 @@ public slots:
     void input_KeyNUM(QString text);
 protected:
     void paintEvent(QPaintEvent *);
+private slots:
+    void on_comboBox_LED_currentTextChanged();
+
 private:
     Ui::MainWindow *ui;
 };
