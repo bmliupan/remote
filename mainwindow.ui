@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>600</height>
+    <width>2277</width>
+    <height>1327</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -58,8 +58,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -77,8 +80,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -126,14 +132,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <item>
          <property name="text">
           <string>6122</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>3010</string>
          </property>
         </item>
        </widget>
@@ -148,8 +152,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -167,8 +174,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -186,8 +196,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -205,8 +218,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -256,8 +272,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -275,8 +294,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -291,6 +313,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <property name="text">
          <string>普通按键编辑</string>
@@ -326,8 +351,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -377,8 +405,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -393,6 +424,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <property name="text">
          <string>生成代码</string>
@@ -409,9 +443,10 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
           <weight>50</weight>
+          <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
@@ -430,8 +465,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -465,8 +503,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -498,6 +539,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <property name="text">
          <string>用户码</string>
         </property>
@@ -516,8 +560,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -532,6 +579,12 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -561,8 +614,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -596,8 +652,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -615,8 +674,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -632,6 +694,12 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="17" column="4">
@@ -644,8 +712,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -660,6 +731,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <item>
          <property name="text">
@@ -678,8 +752,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -697,8 +774,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -716,8 +796,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -751,8 +834,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -770,8 +856,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -835,6 +924,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <property name="text">
          <string>载入文件</string>
         </property>
@@ -866,8 +958,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -882,6 +977,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <property name="text">
          <string>学习按键格式</string>
@@ -901,8 +999,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -936,8 +1037,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -971,8 +1075,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -990,8 +1097,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1009,8 +1119,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1092,8 +1205,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1111,8 +1227,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1146,8 +1265,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1165,8 +1287,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1176,6 +1301,9 @@
       </item>
       <item row="16" column="0">
        <widget class="QLabel" name="label_B">
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <property name="text">
          <string>等待学习键按下</string>
         </property>
@@ -1210,8 +1338,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1227,14 +1358,17 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <item>
          <property name="text">
-          <string>闪烁</string>
+          <string>长亮</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>长亮</string>
+          <string>闪烁</string>
          </property>
         </item>
        </widget>
@@ -1265,8 +1399,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1281,6 +1418,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <property name="text">
          <string>显示序号</string>
@@ -1327,6 +1467,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <item>
          <property name="text">
           <string>闪烁</string>
@@ -1349,8 +1492,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1368,8 +1514,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1438,8 +1587,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1457,8 +1609,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1476,8 +1631,15 @@
         </property>
         <property name="font">
          <font>
-          <family>Agency FB</family>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <property name="text">
          <string>红灯接法</string>
@@ -1489,6 +1651,9 @@
       </item>
       <item row="14" column="0">
        <widget class="QLabel" name="label_A">
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <property name="text">
          <string>等待设置键松开</string>
         </property>
@@ -1523,8 +1688,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1574,8 +1742,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1593,8 +1764,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1660,8 +1834,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1679,8 +1856,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1727,6 +1907,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <item>
          <property name="text">
@@ -1828,6 +2011,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <property name="text">
          <string>用户码</string>
         </property>
@@ -1862,8 +2048,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1913,8 +2102,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -1929,6 +2121,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <item>
          <property name="text">
@@ -1984,8 +2179,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2003,8 +2201,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2022,8 +2223,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2041,8 +2245,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2108,8 +2315,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2152,8 +2362,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2219,8 +2432,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2238,8 +2454,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2249,6 +2468,9 @@
       </item>
       <item row="18" column="0">
        <widget class="QLabel" name="label_C">
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
         <property name="text">
          <string>等待波形到来</string>
         </property>
@@ -2267,8 +2489,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2286,8 +2511,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2305,8 +2533,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2340,8 +2571,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2391,8 +2625,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2407,6 +2644,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
         </property>
         <property name="text">
          <string>普通按键格式</string>
@@ -2426,8 +2666,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2477,8 +2720,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2544,8 +2790,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2563,8 +2812,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2614,8 +2866,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2665,8 +2920,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2684,8 +2942,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2703,8 +2964,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2722,8 +2986,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2773,8 +3040,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2792,8 +3062,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2811,8 +3084,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2926,8 +3202,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2945,8 +3224,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2964,8 +3246,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -2983,8 +3268,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -3034,8 +3322,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -3069,8 +3360,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -3088,8 +3382,11 @@
         </property>
         <property name="font">
          <font>
-          <family>黑体</family>
-          <pointsize>12</pointsize>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="alignment">
@@ -3275,8 +3572,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
-     <height>21</height>
+     <width>2277</width>
+     <height>28</height>
     </rect>
    </property>
   </widget>

@@ -15,7 +15,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QLineEdit * lEdit[78];
+    QLineEdit *lEdit[78];
     QLabel *keyLabel[78];
     QLabel *pinLabel[13];
 public slots:

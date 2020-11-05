@@ -7,7 +7,6 @@ int char2int(char data);
 bool checkInput(QString text, int num);
 uint16_t calculate_verifycode(QByteArray dataBuff);
 uint8_t getFormatNum(QString format);
-uint16_t setStateIO(uint8_t pin, IOState state);
-uint16_t setLevelIO(uint8_t pin, IOLevel level);
-uint16_t judgeIO(uint8_t pin);
+void getKeyPin(uint8_t key, QString *pin, uint8_t *pinV1, uint8_t *pinV2);
+
 #endif // FUNCTION_H

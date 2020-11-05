@@ -3,56 +3,62 @@
 #include <QApplication>
 
 //初始化模块
-#define    IO_P2UPRE_ADDR                          100+4*0x0CF3
-#define    IO_P1TSM_ADDR                           100+4*0x0CF5
-#define    IO_P2TSM_ADDR                           100+4*0x0CF7
-#define    IO_P1WAKE_ADDR                          100+4*0x0CF9
-#define    IO_P2WAKE_ADDR                          100+4*0x0CFC
-#define    IO_P1MODE_ADDR                          100+4*0x0CFF
-#define    IO_P2MODE_ADDR                          100+4*0x0D01
-#define    IO_P1DATA_ADDR                          100+4*0x0D03
-#define    IO_P2DATA_ADDR                          100+4*0x0D05
+#define    IO_P1UPRE_ADDR                          100+4*0x0D17
+#define    IO_P2UPRE_ADDR                          100+4*0x0D19
+#define    IO_P1TSM_ADDR                           100+4*0x0D1B
+#define    IO_P2TSM_ADDR                           100+4*0x0D1D
+#define    IO_P1WAKE_ADDR                          100+4*0x0D1F
+#define    IO_P2WAKE_ADDR                          100+4*0x0D21
+#define    IO_P1MODE_ADDR                          100+4*0x0D23
+#define    IO_P2MODE_ADDR                          100+4*0x0D25
+#define    IO_P1DATA_ADDR                          100+4*0x0D27
+#define    IO_P2DATA_ADDR                          100+4*0x0D29
 
 //按键扫描模块
-#define    KEY_P2MODE_ADDR                         100+4*0x0099
-#define    KEY_P1MODE_ADDR                         100+4*0x009C
-#define    KEY_P2DATA_ADDR                         100+4*0x00A0
-#define    KEY_P1DATA_ADDR                         100+4*0x00A2
+#define    KEY_START_ADDR                          100+4*0x0090
+#define    KEY_P2MODE_ADDR                         100+4*0x0097
+#define    KEY_P1MODE_ADDR                         100+4*0x009A
+#define    KEY_P2DATA_ADDR                         100+4*0x009E
+#define    KEY_P1DATA_ADDR                         100+4*0x00A1
+#define    CHECK_IO_ADDR                           100+4*0x00A8
 
 //小红灯亮灭模块
-#define    LIGHT_ON_M_ADDR                         100+4*0x0DAC
-#define    LIGHT_ON_D_ADDR                         100+4*0x0DAD
-#define    LIGHT_OFF_M_ADDR                        100+4*0x0DAF
-#define    LIGHT_OFF_D_ADDR                        100+4*0x0DB0
+#define    LIGHT_ON_M_ADDR                         100+4*0x0DD0
+#define    LIGHT_ON_D_ADDR                         100+4*0x0DD1
+#define    LIGHT_OFF_M_ADDR                        100+4*0x0DD3
+#define    LIGHT_OFF_D_ADDR                        100+4*0x0DD4
 
 //学习时红灯闪烁方法模块                
-#define    LEARN_KEY_PRESS_ADDR                    100+4*0x04A1
-#define    LEARN_KEY_FREE_ADDR                     100+4*0x04B3
-#define    LEARN_WAIT_IR_ADDR                      100+4*0x04F3
+#define    LEARN_KEY_PRESS_ADDR                    100+4*0x04BE
+#define    LEARN_KEY_FREE_ADDR                     100+4*0x04D0
+#define    LEARN_WAIT_IR_ADDR                      100+4*0x0510
 
 //编码格式用户码按键键值
-#define    KEY_DATA_ADDR                           100+4*0x0DF8
-#define    TV_USER_FORMAT_ADDR                     100+4*0x0E3A
-#define    TV_USER_CODE1_ADDR                      100+4*0x0E3C
-#define    TV_USER_CODE2_ADDR                      100+4*0x0E3E
-#define    TV_USER_CODE3_ADDR                      100+4*0x0E40
-#define    TV_USER_CODE4_ADDR                      100+4*0x0E42
-#define    STB_USER_FORMAT_ADDR                    100+4*0x0E45
-#define    STB_USER_CODE1_ADDR                     100+4*0x0E47
-#define    STB_USER_CODE2_ADDR                     100+4*0x0E49
-#define    STB_USER_CODE3_ADDR                     100+4*0x0E4B
-#define    STB_USER_CODE4_ADDR                     100+4*0x0E4D
+#define    KEY_DATA_ADDR                           100+4*0x0E1C
+#define    TV_USER_FORMAT_ADDR                     100+4*0x0E6A
+#define    TV_USER_CODE1_ADDR                      100+4*0x0E6C
+#define    TV_USER_CODE2_ADDR                      100+4*0x0E6E
+#define    TV_USER_CODE3_ADDR                      100+4*0x0E70
+#define    TV_USER_CODE4_ADDR                      100+4*0x0E72
+#define    STB_USER_FORMAT_ADDR                    100+4*0x0E75
+#define    STB_USER_CODE1_ADDR                     100+4*0x0E77
+#define    STB_USER_CODE2_ADDR                     100+4*0x0E79
+#define    STB_USER_CODE3_ADDR                     100+4*0x0E7B
+#define    STB_USER_CODE4_ADDR                     100+4*0x0E7D
 
 //学习设置键和学习按键配置
-#define    SET_KEY_ADDR1                           100+4*0x0049
-#define    SET_KEY_ADDR2                           100+4*0x049F
-#define    SET_KEY_ADDR3                           100+4*0x04A5
-#define    SET_KEY_ADDR4                           100+4*0x04BD
-#define    LEARN_KEY_ADDR                          100+4*0x0E5A
-#define    SET_OUTPUT_ADDR1                        100+4*0x04DD
-#define    SET_OUTPUT_ADDR2                        100+4*0x04DE
-#define    SET_OUTPUT_ADDR3                        100+4*0x04DF
-#define    SET_OUTPUT_ADDR4                        100+4*0x04E0
-#define    SET_INPUT_ADDR                          100+4*0x04EA
+#define    SET_KEY_ADDR1                           100+4*0x0048
+#define    SET_KEY_ADDR2                           100+4*0x04BC
+#define    SET_KEY_ADDR3                           100+4*0x04C2
+#define    SET_KEY_ADDR4                           100+4*0x04DA
+#define    LEARN_KEY_ADDR                          100+4*0x0E8A
+#define    SET_OUTPUT_ADDRS1                       100+4*0x04AE
+#define    SET_OUTPUT_ADDRS2                       100+4*0x04AF
+#define    SET_INPUT_SADDR                         100+4*0x04B4
+#define    SET_OUTPUT_ADDR1                        100+4*0x04FA
+#define    SET_OUTPUT_ADDR2                        100+4*0x04FB
+#define    SET_OUTPUT_ADDR3                        100+4*0x04FC
+#define    SET_OUTPUT_ADDR4                        100+4*0x04FD
+#define    SET_INPUT_ADDR                          100+4*0x0507
 
 #endif // LTFILEPARAMETER_H

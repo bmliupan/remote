@@ -12,8 +12,6 @@
 
 int hightC = 0;
 int widthC = 0;
-QString pinA[] = {"2","3","4","5","6","7","8","9","10","11","12","13","1"};
-QString pinB[] = {"3","4","5","6","7","8","9","10","11","12","13","14","1"};
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -213,16 +211,16 @@ void MainWindow::input_KeyNUM(QString text)
 
     int index = text.toInt();
     qDebug("index value is %d", index);
-    lEdit[index]->setStyleSheet("background-color:rgba(255,0,0,255)");
     if (lEdit[index] == nullptr) return;
     if (!edit_flag) {
         lEdit[index]->setStyleSheet("background-color:rgba(255,255,255,255)");
     } else {
         lEdit[index]->setStyleSheet("background-color:rgba(255,0,0,255)");
     }
-    if (checkInput(ui->lineEdit_001->text(), index) == false) {
-    QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
+    if (checkInput(lEdit[index]->text(), index) == false) {
+        QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
     }
+    qDebug("current keyvalue is %x", keyValue[index]);
 
     return;
 }
@@ -231,7 +229,11 @@ void MainWindow::input_KeyNUM(QString text)
  {
      QPainter painter(this);
      QPen pen;
-     pen.setColor(QColor(0,80,128));
+     if (ui->comboBox_LED->currentText() == "红灯接14脚") {
+        pen.setColor(QColor(0,80,128));
+     } else {
+        pen.setColor(QColor(0,170,17));
+     }
      pen.setWidth(4);
      painter.setPen(pen);
      int i = 0;
@@ -298,7 +300,7 @@ void MainWindow::on_pushButton_2_clicked()
     uint8_t totalKeyNum =0;
     uint8_t setKeyValue = 0;
     uint8_t learnKeyList[10] = {77,77,77,77,77,77,77,77,77,77};
-    for (int i = 0; i < 66; i++) {
+    for (int i = 0; i < 78; i++) {
         if(keyFlag[i] == normalFlag) normalKeyNum ++;
         if(keyFlag[i] == learnFlag) {
             learnKeyList[learnKeyNum++] = translist[i];
@@ -416,49 +418,49 @@ void MainWindow::on_pushButton_2_clicked()
     }
 
     /* 修改小红灯亮灭灯程序 */
-    uint16_t dataBuff;
+    uint16_t dataBuff = 0;
     if (ui->comboBox_LED->currentText() == "红灯接14脚") {
         /* 设置14脚亮灯 */
-        dataBuff = setStateIO(14, OutState);
+        dataBuff = ioPinState[1][14-2];
         fileData[LIGHT_ON_M_ADDR + 0] = (dataBuff & 0xf000) >> 12;
         fileData[LIGHT_ON_M_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
         fileData[LIGHT_ON_M_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
         fileData[LIGHT_ON_M_ADDR + 3] = (dataBuff & 0x000f) >> 0;
-        dataBuff = setLevelIO(14, lowLevel);
+        dataBuff = ioPinLevel[0][14-2];
         fileData[LIGHT_ON_D_ADDR + 0] = (dataBuff & 0xf000) >> 12;
         fileData[LIGHT_ON_D_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
         fileData[LIGHT_ON_D_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
         fileData[LIGHT_ON_D_ADDR + 3] = (dataBuff & 0x000f) >> 0;
         /* 设置14脚灭灯 */
-        dataBuff = setStateIO(14, OutState);
+        dataBuff = ioPinState[1][14-2];
         fileData[LIGHT_OFF_M_ADDR + 0] = (dataBuff & 0xf000) >> 12;
         fileData[LIGHT_OFF_M_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
         fileData[LIGHT_OFF_M_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
         fileData[LIGHT_OFF_M_ADDR + 3] = (dataBuff & 0x000f) >> 0;
-        dataBuff = setLevelIO(14, highLevel);
+        dataBuff = ioPinLevel[1][14-2];
         fileData[LIGHT_OFF_D_ADDR + 0] = (dataBuff & 0xf000) >> 12;
         fileData[LIGHT_OFF_D_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
         fileData[LIGHT_OFF_D_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
         fileData[LIGHT_OFF_D_ADDR + 3] = (dataBuff & 0x000f) >> 0;
     } else {
         /* 设置2脚亮灯 */
-        dataBuff = setStateIO(2, OutState);
+        dataBuff = ioPinState[1][2-2];
         fileData[LIGHT_ON_M_ADDR + 0] = (dataBuff & 0xf000) >> 12;
         fileData[LIGHT_ON_M_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
         fileData[LIGHT_ON_M_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
         fileData[LIGHT_ON_M_ADDR + 3] = (dataBuff & 0x000f) >> 0;
-        dataBuff = setLevelIO(2, lowLevel);
+        dataBuff = ioPinLevel[0][2-2];
         fileData[LIGHT_ON_D_ADDR + 0] = (dataBuff & 0xf000) >> 12;
         fileData[LIGHT_ON_D_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
         fileData[LIGHT_ON_D_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
         fileData[LIGHT_ON_D_ADDR + 3] = (dataBuff & 0x000f) >> 0;
         /* 设置2脚灭灯 */
-        dataBuff = setStateIO(2, OutState);
+        dataBuff = ioPinState[1][2-2];
         fileData[LIGHT_OFF_M_ADDR + 0] = (dataBuff & 0xf000) >> 12;
         fileData[LIGHT_OFF_M_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
         fileData[LIGHT_OFF_M_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
         fileData[LIGHT_OFF_M_ADDR + 3] = (dataBuff & 0x000f) >> 0;
-        dataBuff = setLevelIO(2, highLevel);
+        dataBuff = ioPinLevel[1][2-2];
         fileData[LIGHT_OFF_D_ADDR + 0] = (dataBuff & 0xf000) >> 12;
         fileData[LIGHT_OFF_D_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
         fileData[LIGHT_OFF_D_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
@@ -474,33 +476,121 @@ void MainWindow::on_pushButton_2_clicked()
     fileData[SET_KEY_ADDR4 + 2] = (setKeyValue & 0xf0) >> 4;
     fileData[SET_KEY_ADDR4 + 3] = setKeyValue & 0x0f;
     /* 学习退出IO口设置 */
-    dataBuff = setStateIO(listenIO[setKeyValue][0],OutState);
+    QString * pin = nullptr;
+    if (ui->comboBox_LED->currentText() == "红灯接14脚") {
+        pin = pinA;
+    } else {
+        pin = pinB;
+    }
+
+    uint8_t pin1 = 0;
+    uint8_t pin2 = 0;
+    getKeyPin(translate[setKeyValue], pin, &pin1, &pin2);
+
+    qDebug("pin1 is %d", pin1);
+    qDebug("pin2 is %d", pin2);
+    if (pin1 == 1) {
+        dataBuff = 0;
+    } else {
+        dataBuff = ioPinState[1][pin1-2];
+    }
     fileData[SET_OUTPUT_ADDR1 + 0] = (dataBuff & 0xf000) >> 12;
     fileData[SET_OUTPUT_ADDR1 + 1] = (dataBuff & 0x0f00) >> 8;
     fileData[SET_OUTPUT_ADDR1 + 2] = (dataBuff & 0x00f0) >> 4;
-    fileData[SET_OUTPUT_ADDR1 + 3] = (dataBuff & 0x000f) >> 0;  //写入指令 控制io状态
-    dataBuff = setLevelIO(listenIO[setKeyValue][0],lowLevel);
+    fileData[SET_OUTPUT_ADDR1 + 3] = (dataBuff & 0x000f) >> 0;
+    fileData[SET_OUTPUT_ADDRS1 + 0] = (dataBuff & 0xf000) >> 12;
+    fileData[SET_OUTPUT_ADDRS1 + 1] = (dataBuff & 0x0f00) >> 8;
+    fileData[SET_OUTPUT_ADDRS1 + 2] = (dataBuff & 0x00f0) >> 4;
+    fileData[SET_OUTPUT_ADDRS1 + 3] = (dataBuff & 0x000f) >> 0;
+    if (pin1 == 1) {
+        dataBuff = 0;
+    } else {
+        dataBuff = ioPinLevel[0][pin1-2];
+    }
     fileData[SET_OUTPUT_ADDR2 + 0] = (dataBuff & 0xf000) >> 12;
     fileData[SET_OUTPUT_ADDR2 + 1] = (dataBuff & 0x0f00) >> 8;
     fileData[SET_OUTPUT_ADDR2 + 2] = (dataBuff & 0x00f0) >> 4;
     fileData[SET_OUTPUT_ADDR2 + 3] = (dataBuff & 0x000f) >> 0;
-    dataBuff = setStateIO(listenIO[setKeyValue][1],inState);
+    fileData[SET_OUTPUT_ADDRS2 + 0] = (dataBuff & 0xf000) >> 12;
+    fileData[SET_OUTPUT_ADDRS2 + 1] = (dataBuff & 0x0f00) >> 8;
+    fileData[SET_OUTPUT_ADDRS2 + 2] = (dataBuff & 0x00f0) >> 4;
+    fileData[SET_OUTPUT_ADDRS2 + 3] = (dataBuff & 0x000f) >> 0;
+    dataBuff = ioPinState[0][pin2-2];
     fileData[SET_OUTPUT_ADDR3 + 0] = (dataBuff & 0xf000) >> 12;
     fileData[SET_OUTPUT_ADDR3 + 1] = (dataBuff & 0x0f00) >> 8;
     fileData[SET_OUTPUT_ADDR3 + 2] = (dataBuff & 0x00f0) >> 4;
     fileData[SET_OUTPUT_ADDR3 + 3] = (dataBuff & 0x000f) >> 0;
-    dataBuff = setLevelIO(listenIO[setKeyValue][1],lowLevel);
+    dataBuff = ioPinLevel[0][pin2-2];
     fileData[SET_OUTPUT_ADDR4 + 0] = (dataBuff & 0xf000) >> 12;
     fileData[SET_OUTPUT_ADDR4 + 1] = (dataBuff & 0x0f00) >> 8;
     fileData[SET_OUTPUT_ADDR4 + 2] = (dataBuff & 0x00f0) >> 4;
     fileData[SET_OUTPUT_ADDR4 + 3] = (dataBuff & 0x000f) >> 0;
 
-    dataBuff = judgeIO(listenIO[setKeyValue][1]);
+    dataBuff = ioData[pin2 - 2];
     fileData[SET_INPUT_ADDR + 0] = (dataBuff & 0xf000) >> 12;
     fileData[SET_INPUT_ADDR + 1] = (dataBuff & 0x0f00) >> 8;
     fileData[SET_INPUT_ADDR + 2] = (dataBuff & 0x00f0) >> 4;
     fileData[SET_INPUT_ADDR + 3] = (dataBuff & 0x000f) >> 0;
+    dataBuff = dataBuff - 0x0800;   //判0跳转改为判1跳转
+    fileData[SET_INPUT_SADDR + 0] = (dataBuff & 0xf000) >> 12;
+    fileData[SET_INPUT_SADDR + 1] = (dataBuff & 0x0f00) >> 8;
+    fileData[SET_INPUT_SADDR + 2] = (dataBuff & 0x00f0) >> 4;
+    fileData[SET_INPUT_SADDR + 3] = (dataBuff & 0x000f) >> 0;
+    /* io 初始化 */
+    if (ui->comboBox_LED->currentText() == "红灯接14脚") {
+        fileData[IO_P1TSM_ADDR + 2] =  (0XFF & 0xf0) >> 4;
+        fileData[IO_P1TSM_ADDR + 3] =  (0XFF & 0x0f) >> 0;
+        fileData[IO_P2TSM_ADDR + 2] =  (0x0F & 0xf0) >> 4;
+        fileData[IO_P2TSM_ADDR + 3] =  (0X0F & 0x0f) >> 0;
+        fileData[IO_P1WAKE_ADDR + 2] = (0XFF & 0xf0) >> 4;
+        fileData[IO_P1WAKE_ADDR + 3] = (0XFF & 0x0f) >> 0;
+        fileData[IO_P2WAKE_ADDR + 2] = (0X0F & 0xf0) >> 4;
+        fileData[IO_P2WAKE_ADDR + 3] = (0X0F & 0x0f) >> 0;
+        fileData[IO_P1MODE_ADDR + 2] = (0X00 & 0xf0) >> 4;
+        fileData[IO_P1MODE_ADDR + 3] = (0X00 & 0x0f) >> 0;
+        fileData[IO_P2MODE_ADDR + 2] = (0X30 & 0xf0) >> 4;
+        fileData[IO_P2MODE_ADDR + 3] = (0X30 & 0x0f) >> 0;
+        fileData[IO_P1DATA_ADDR + 2] = (0X00 & 0xf0) >> 4;
+        fileData[IO_P1DATA_ADDR + 3] = (0X00 & 0x0f) >> 0;
+        fileData[IO_P2DATA_ADDR + 2] = (0X30 & 0xf0) >> 4;
+        fileData[IO_P2DATA_ADDR + 3] = (0X30 & 0x0f) >> 0;
+    } else {
+        fileData[IO_P1TSM_ADDR + 2] =  (0XFE & 0xf0) >> 4;
+        fileData[IO_P1TSM_ADDR + 3] =  (0XFE & 0x0f) >> 0;
+        fileData[IO_P2TSM_ADDR + 2] =  (0x1F & 0xf0) >> 4;
+        fileData[IO_P2TSM_ADDR + 3] =  (0X1F & 0x0f) >> 0;
+        fileData[IO_P1WAKE_ADDR + 2] = (0XFE & 0xf0) >> 4;
+        fileData[IO_P1WAKE_ADDR + 3] = (0XFE & 0x0f) >> 0;
+        fileData[IO_P2WAKE_ADDR + 2] = (0X1F & 0xf0) >> 4;
+        fileData[IO_P2WAKE_ADDR + 3] = (0X1F & 0x0f) >> 0;
+        fileData[IO_P1MODE_ADDR + 2] = (0X01 & 0xf0) >> 4;
+        fileData[IO_P1MODE_ADDR + 3] = (0X01 & 0x0f) >> 0;
+        fileData[IO_P2MODE_ADDR + 2] = (0X20 & 0xf0) >> 4;
+        fileData[IO_P2MODE_ADDR + 3] = (0X20 & 0x0f) >> 0;
+        fileData[IO_P1DATA_ADDR + 2] = (0X01 & 0xf0) >> 4;
+        fileData[IO_P1DATA_ADDR + 3] = (0X01 & 0x0f) >> 0;
+        fileData[IO_P2DATA_ADDR + 2] = (0X20 & 0xf0) >> 4;
+        fileData[IO_P2DATA_ADDR + 3] = (0X20 & 0x0f) >> 0;
+    }
 
+    /* 修改键扫 */
+    if (ui->comboBox_LED->currentText() == "红灯接14脚") {
+        fileData[KEY_START_ADDR + 2] = 0x10 >> 4;
+        fileData[KEY_START_ADDR + 3] = 0x10 & 0x0f;
+        fileData[KEY_P2MODE_ADDR + 2] = 0x30 >> 4;
+        fileData[KEY_P2MODE_ADDR + 3] = 0x30 & 0x0f;
+        fileData[KEY_P1MODE_ADDR + 2] = 0x00 >> 4;
+        fileData[KEY_P1MODE_ADDR + 3] = 0x00 & 0x0f;
+        fileData[CHECK_IO_ADDR + 1] = 0x08;
+    } else {
+        fileData[KEY_START_ADDR + 2] = 0x20 >> 4;
+        fileData[KEY_START_ADDR + 3] = 0x20 & 0x0f;
+        fileData[KEY_P2MODE_ADDR + 2] = 0x20 >> 4;
+        fileData[KEY_P2MODE_ADDR + 3] = 0x20 & 0x0f;
+        fileData[KEY_P1MODE_ADDR + 2] = 0x01 >> 4;
+        fileData[KEY_P1MODE_ADDR + 3] = 0x01 & 0x0f;
+        fileData[CHECK_IO_ADDR + 1] = 0x09;
+    }
     /* 生成校验码 */
     verifyCode = calculate_verifycode(fileData);
     QDateTime current_time = QDateTime::currentDateTime();
@@ -635,7 +725,6 @@ void MainWindow::on_lineEdit_user_TV_editingFinished()
         userCodeTV[i] = temp;
     }
 }
-
 
 void MainWindow::on_comboBox_LED_currentTextChanged()
 {

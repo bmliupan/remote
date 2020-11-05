@@ -2,6 +2,7 @@
 #include <QFileDialog>
 #include <QDataStream>
 #include <qdatetime.h>
+#include <qstring.h>
 
 int char2int(char data)
 {
@@ -71,21 +72,19 @@ uint8_t getFormatNum(QString format)
     return 100;
 }
 
-uint16_t setStateIO(uint8_t pin, IOState state)
+void getKeyPin(uint8_t key, QString *pin, uint8_t *pinV1, uint8_t *pinV2)
 {
-    if (pin == 1) return 0;
-    return ioPinState[state][pin - 2];
-}
+    for (int j = 0; j < 13; j ++) {
+        for (int i = 0; i < j; i ++) {
+            if (key == 0) {
+                *pinV1 = pin[j].toInt();
+                *pinV2 = pin[i].toInt();
 
-uint16_t setLevelIO(uint8_t pin, IOLevel level)
-{
-    if (pin == 1) return 0;
-    return ioPinLevel[level][pin - 2];
-}
+                return;
+            }
+            key --;
+        }
+    }
 
-
-uint16_t judgeIO(uint8_t pin)
-{
-    if (pin >13 || pin < 3) return  0;
-    return ioData[pin - 3];
+    return;
 }

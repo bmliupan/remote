@@ -28,10 +28,10 @@ enum IOLevel {
 extern bool toggleState;
 extern bool display_flag;
 extern uint8_t edit_flag;
-extern uint16_t keyValue[66];
-extern uint8_t keyFlag[66];
-extern uint8_t translate[66];
-extern uint8_t translist[66];
+extern uint16_t keyValue[78];
+extern uint8_t keyFlag[78];
+extern uint8_t translate[78];
+extern uint8_t translist[78];
 extern uint8_t userCodeSTB[8];
 extern uint8_t userCodeTV[8];
 extern QString formatSTB;
@@ -39,8 +39,10 @@ extern QString formatTV;
 extern QString formatStr[];
 extern uint16_t ioPinState[2][13];
 extern uint16_t ioPinLevel[2][13];
-extern uint8_t listenIO[66][2];
-extern uint16_t ioData[11];
+extern uint16_t ioData[12];
+extern QString pinA[13];
+extern QString pinB[13];
+
 #define MaxLearnKeyNum  10;
 
 #endif // DATA_H
