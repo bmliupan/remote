@@ -2,16 +2,19 @@
 #include "ui_mainwindow.h"
 #include "function.h"
 #include "data.h"
+#include "ltFileParameter.h"
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDataStream>
 #include <QPainter>
 #include <qdatetime.h>
 #include <QSignalMapper>
-#include "ltFileParameter.h"
+#include "libxl.h"
 
 int hightC = 0;
 int widthC = 0;
+
+using namespace libxl;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -192,13 +195,15 @@ MainWindow::MainWindow(QWidget *parent)
     pinLabel[11] = qobject_cast<QLabel *>(ui->labell);
     pinLabel[12] = qobject_cast<QLabel *>(ui->labelm);
 
-
     QSignalMapper *signal_mapper = new QSignalMapper(this);
     connect(signal_mapper, SIGNAL(mapped(const QString &)), this, SLOT(input_KeyNUM(QString)));
     for (int i = 0; i < 78; i ++) {
         signal_mapper->setMapping(lEdit[i], QString::number(i, 10));
         connect(lEdit[i], SIGNAL(editingFinished()), signal_mapper, SLOT(map()));
     }
+
+    connect(ui->menu_get_excel, SIGNAL(triggered()), this, SLOT(menu_get_excel()));
+
 }
 
 MainWindow::~MainWindow()
@@ -264,12 +269,17 @@ void MainWindow::input_KeyNUM(QString text)
      a[11][0] = lEdit[77]->geometry().x();
      a[11][1] = lEdit[77]->geometry().y();
 
+     int hightL = ui->label_001->size().rheight();
      hightC = ui->lineEdit_001->size().rheight();
      widthC = ui->lineEdit_001->size().rwidth();
+//     qDebug("lineEdit001 x is %d, y is %d", a[0][0], a[0][1]);
+//     qDebug("label001 x is %d, y is %d", ui->label_001->geometry().x(),ui->label_001->geometry().y());
+
+
      int xInterval = ui->lineEdit_002->geometry().x() - ui->lineEdit_003->geometry().x();
      for (i = 0; i < 12; i++) {
          int xStart = a[i][0] - xInterval + widthC/2;
-         int yStart = a[i][1] + hightC/2 ;
+         int yStart = a[i][1] + hightC ;
          int xEnd = a[0][0] + widthC + 6;
          int yEnd = yStart;
          if (i == 11) xStart = a[i][0] + 5;
@@ -277,16 +287,16 @@ void MainWindow::input_KeyNUM(QString text)
          painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
          //画竖线
          xEnd = xStart;
-         yEnd = a[11][1];
+         yEnd = a[11][1] + hightL;
          if (i != 11) painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
      }
      int xStart = a[0][0] + widthC/2;
-     int yStart = a[0][1] - hightC/2 ;
+     int yStart = ui->labela->geometry().y() + ui->labela->size().rheight() * 1;
      int xEnd = a[0][0] + widthC + 6;
      int yEnd = yStart;
      painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
      xEnd = xStart;
-     yEnd = a[11][1];
+     yEnd = a[11][1] + hightC;
      painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
  }
 
@@ -300,7 +310,7 @@ void MainWindow::on_pushButton_2_clicked()
     uint8_t totalKeyNum =0;
     uint8_t setKeyValue = 0;
     uint8_t learnKeyList[10] = {77,77,77,77,77,77,77,77,77,77};
-    for (int i = 0; i < 78; i++) {
+    for (int i = 0; i < TOTALKEYNUM; i++) {
         if(keyFlag[i] == normalFlag) normalKeyNum ++;
         if(keyFlag[i] == learnFlag) {
             learnKeyList[learnKeyNum++] = translist[i];
@@ -342,7 +352,7 @@ void MainWindow::on_pushButton_2_clicked()
     } */
     /* 写入键码数据 */
     uint16_t index = KEY_DATA_ADDR;//读入键值首地址
-    for (uint8_t j = 0; j < 66; j ++) {
+    for (uint8_t j = 0; j < TOTALKEYNUM; j ++) {
         fileData[index++] = (uint8_t)((keyValue[translate[j]] >> 12) & 0x000f);
         fileData[index++] = (uint8_t)((keyValue[translate[j]] >> 8) & 0x000f);
         fileData[index++] = (uint8_t)((keyValue[translate[j]] >> 4) & 0x000f);
@@ -649,9 +659,10 @@ void MainWindow::on_pushButton_3_clicked()
     }
 }
 //读入lt文件
+/*
 void MainWindow::on_pushButton_4_clicked()
 {
-    /*
+
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("文件对话框！"),
                                                     "D:",
@@ -665,8 +676,8 @@ void MainWindow::on_pushButton_4_clicked()
 
     QByteArray fileData;
     fileData = file.readAll();
-    */
-}
+
+}*/
 
 //机顶盒用户码输入
 void MainWindow::on_lineEdit_user_STB_editingFinished()
@@ -750,4 +761,43 @@ void MainWindow::on_comboBox_LED_currentTextChanged()
         }
         j ++;
     }
+}
+
+void MainWindow::menu_get_excel()
+{
+    QString filePath = QFileDialog::getOpenFileName(this,
+                                                    tr("导入excel文件"),
+                                                    "D:",
+                                                    tr("原理图文件(*.xls *.xlsx);;"));
+
+    Book *book = NULL;
+    if (filePath.endsWith("xls", Qt::CaseSensitive)) {
+        book = xlCreateBook(); //xlCreateBook for xls
+    } else {
+        book = xlCreateXMLBook(); //xlCreateBook for xlsx
+    }
+    book->setKey(L"HAHA", L"windows-2b2f2a0302cbea0361bb6764a1f1g3h4");
+    book->load(filePath.toStdWString().c_str());
+    CellType ct;
+    if (book) {
+        Sheet *sheet = book->getSheet(0);
+       // int cellnum = 0;
+        uint16_t column, row;
+        column = 22;
+        row = 30;
+        ct = sheet->cellType(column, row);
+        qDebug("excel 打开成功");
+        qDebug("cell type is %d", ct);
+        if (ct == 2) {
+            qDebug("当前单元格为字符格式");
+            ui->lineEdit_001->setText(QString::fromStdWString(sheet->readStr(column, row)));
+        } else if (ct == 1) {
+            qDebug("当前单元格为数值格式");
+            ui->lineEdit_001->setText(QString::number((int)sheet->readNum(column, row)));
+        }
+    } else {
+        QMessageBox::information(this, tr("错误"), tr("文件读取失败！"));
+    }
+
+
 }

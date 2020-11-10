@@ -1,5 +1,5 @@
 QT       += core gui
-VERSION = "1.3.0.0"
+VERSION = "1.4.0.0"
 RC_ICONS = icon/mcu.ico
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,14 +26,15 @@ HEADERS += \
     data.h \
     function.h \
     ltFileParameter.h \
-    mainwindow.h
+    mainwindow.h \
 
 FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
     remote_zh_CN.ts
-
+INCLUDEPATH = ./include_cpp/
+LIBS += ./libxl.lib
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

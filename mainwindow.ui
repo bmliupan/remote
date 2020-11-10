@@ -417,22 +417,6 @@
         </property>
        </widget>
       </item>
-      <item row="13" column="0">
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
-        </property>
-        <property name="text">
-         <string>生成代码</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="12">
        <widget class="QLineEdit" name="lineEdit_001">
         <property name="sizePolicy">
@@ -916,22 +900,6 @@
         </property>
        </widget>
       </item>
-      <item row="11" column="0">
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
-        </property>
-        <property name="text">
-         <string>载入文件</string>
-        </property>
-       </widget>
-      </item>
       <item row="20" column="2">
        <widget class="QLabel" name="label_066">
         <property name="sizePolicy">
@@ -1299,19 +1267,6 @@
         </property>
        </widget>
       </item>
-      <item row="16" column="0">
-       <widget class="QLabel" name="label_B">
-        <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
-        </property>
-        <property name="text">
-         <string>等待学习键按下</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-        </property>
-       </widget>
-      </item>
       <item row="22" column="1">
        <widget class="QLabel" name="label_078">
         <property name="sizePolicy">
@@ -1348,29 +1303,6 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
-       </widget>
-      </item>
-      <item row="17" column="0">
-       <widget class="QComboBox" name="comboBox_B">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>长亮</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>闪烁</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item row="6" column="11">
@@ -1457,29 +1389,6 @@
         <property name="alignment">
          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
         </property>
-       </widget>
-      </item>
-      <item row="19" column="0">
-       <widget class="QComboBox" name="comboBox_C">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>闪烁</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>长亮</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item row="19" column="7">
@@ -1643,19 +1552,6 @@
         </property>
         <property name="text">
          <string>红灯接法</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-        </property>
-       </widget>
-      </item>
-      <item row="14" column="0">
-       <widget class="QLabel" name="label_A">
-        <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
-        </property>
-        <property name="text">
-         <string>等待设置键松开</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -2114,29 +2010,6 @@
         </property>
        </widget>
       </item>
-      <item row="15" column="0">
-       <widget class="QComboBox" name="comboBox_A">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>长亮</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>闪烁</string>
-         </property>
-        </item>
-       </widget>
-      </item>
       <item row="14" column="9">
        <widget class="QLabel" name="label_032">
         <property name="sizePolicy">
@@ -2463,19 +2336,6 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="18" column="0">
-       <widget class="QLabel" name="label_C">
-        <property name="styleSheet">
-         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
-        </property>
-        <property name="text">
-         <string>等待波形到来</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
         </property>
        </widget>
       </item>
@@ -3563,21 +3423,197 @@
         </property>
        </widget>
       </item>
+      <item row="11" column="0">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <property name="text">
+         <string>生成代码</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="label_A">
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <property name="text">
+         <string>等待设置键松开</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="0">
+       <widget class="QComboBox" name="comboBox_A">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>长亮</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>闪烁</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="14" column="0">
+       <widget class="QLabel" name="label_B">
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <property name="text">
+         <string>等待学习键按下</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="0">
+       <widget class="QComboBox" name="comboBox_B">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>长亮</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>闪烁</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="16" column="0">
+       <widget class="QLabel" name="label_C">
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <property name="text">
+         <string>等待波形到来</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="0">
+       <widget class="QComboBox" name="comboBox_C">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>闪烁</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>长亮</string>
+         </property>
+        </item>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>2277</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFC_2204">
+    <property name="title">
+     <string>文件导入</string>
+    </property>
+    <addaction name="menu_get_lt"/>
+    <addaction name="menu_get_excel"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件导出</string>
+    </property>
+    <addaction name="menu_put_excel"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="menu_view_help"/>
+    <addaction name="menu_about_software"/>
+   </widget>
+   <addaction name="menuFC_2204"/>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="menu_get_lt">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>导入lt程序文件</string>
+   </property>
+  </action>
+  <action name="menu_put_excel">
+   <property name="text">
+    <string>导出excel文件</string>
+   </property>
+  </action>
+  <action name="menu_view_help">
+   <property name="text">
+    <string>帮助文档</string>
+   </property>
+  </action>
+  <action name="menu_about_software">
+   <property name="text">
+    <string>关于软件</string>
+   </property>
+  </action>
+  <action name="menu_get_excel">
+   <property name="text">
+    <string>导入excel文件</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>lineEdit_001</tabstop>
@@ -3665,11 +3701,6 @@
   <tabstop>lineEdit_user_TV</tabstop>
   <tabstop>pushButton_1</tabstop>
   <tabstop>pushButton_3</tabstop>
-  <tabstop>pushButton_4</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>comboBox_A</tabstop>
-  <tabstop>comboBox_B</tabstop>
-  <tabstop>comboBox_C</tabstop>
  </tabstops>
  <resources>
   <include location="icon/icon.qrc"/>
