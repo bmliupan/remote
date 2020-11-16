@@ -42,6 +42,8 @@ extern uint16_t ioPinLevel[2][13];
 extern uint16_t ioData[12];
 extern QString pinA[13];
 extern QString pinB[13];
+extern int axes[78][2];
+extern int newAxes[78][2];
 
 #define MaxLearnKeyNum  10;
 

@@ -3580,7 +3580,7 @@
     </property>
     <addaction name="separator"/>
     <addaction name="menu_view_help"/>
-    <addaction name="menu_about_software"/>
+    <addaction name="menu_about"/>
    </widget>
    <addaction name="menuFC_2204"/>
    <addaction name="menu"/>
@@ -3604,7 +3604,7 @@
     <string>帮助文档</string>
    </property>
   </action>
-  <action name="menu_about_software">
+  <action name="menu_about">
    <property name="text">
     <string>关于软件</string>
    </property>

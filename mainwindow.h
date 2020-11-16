@@ -31,6 +31,8 @@ public slots:
     void on_lineEdit_user_TV_editingFinished();
     void input_KeyNUM(QString text);
     void menu_get_excel();
+    void menu_put_excel();
+    void menu_about();
 protected:
     void paintEvent(QPaintEvent *);
 private slots:

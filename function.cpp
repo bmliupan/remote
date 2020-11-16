@@ -88,3 +88,4 @@ void getKeyPin(uint8_t key, QString *pin, uint8_t *pinV1, uint8_t *pinV2)
 
     return;
 }
+

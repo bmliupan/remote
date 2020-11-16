@@ -203,7 +203,8 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     connect(ui->menu_get_excel, SIGNAL(triggered()), this, SLOT(menu_get_excel()));
-
+    connect(ui->menu_about, SIGNAL(triggered()), this, SLOT(menu_about()));
+    //connect(ui->menu_put_excel, SIGNAL(triggered()), this, SLOT(menu_put_excel()));
 }
 
 MainWindow::~MainWindow()
@@ -658,26 +659,6 @@ void MainWindow::on_pushButton_3_clicked()
         }
     }
 }
-//读入lt文件
-/*
-void MainWindow::on_pushButton_4_clicked()
-{
-
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("文件对话框！"),
-                                                    "D:",
-                                                    tr("程序文件(*lt);;"));
-    QFile file(fileName);
-    if(!file.open(QIODevice::ReadOnly))
-    {
-      qDebug("open source file failed!");
-      return;
-    }
-
-    QByteArray fileData;
-    fileData = file.readAll();
-
-}*/
 
 //机顶盒用户码输入
 void MainWindow::on_lineEdit_user_STB_editingFinished()
@@ -769,35 +750,87 @@ void MainWindow::menu_get_excel()
                                                     tr("导入excel文件"),
                                                     "D:",
                                                     tr("原理图文件(*.xls *.xlsx);;"));
-
+    if (filePath == "") return; //取消对话框则直接退出
     Book *book = NULL;
     if (filePath.endsWith("xls", Qt::CaseSensitive)) {
         book = xlCreateBook(); //xlCreateBook for xls
     } else {
         book = xlCreateXMLBook(); //xlCreateBook for xlsx
     }
-    book->setKey(L"HAHA", L"windows-2b2f2a0302cbea0361bb6764a1f1g3h4");
-    book->load(filePath.toStdWString().c_str());
-    CellType ct;
-    if (book) {
-        Sheet *sheet = book->getSheet(0);
-       // int cellnum = 0;
-        uint16_t column, row;
-        column = 22;
-        row = 30;
-        ct = sheet->cellType(column, row);
+    book->setKey(L"TommoT", L"windows-2421220b07c2e10a6eb96768a2p7r6gc");
+    if (book->load(filePath.toStdWString().c_str())) {
         qDebug("excel 打开成功");
-        qDebug("cell type is %d", ct);
-        if (ct == 2) {
-            qDebug("当前单元格为字符格式");
-            ui->lineEdit_001->setText(QString::fromStdWString(sheet->readStr(column, row)));
-        } else if (ct == 1) {
-            qDebug("当前单元格为数值格式");
-            ui->lineEdit_001->setText(QString::number((int)sheet->readNum(column, row)));
+        Sheet *sheet = book->getSheet(0);
+        for (uint8_t i = 0; i < 78; i++) {
+            CellType ct = sheet->cellType(axes[i][0], axes[i][1]);
+            qDebug("cell type is %d", ct);
+            if (ct == 2) {
+                qDebug("当前单元格为字符格式");
+                lEdit[i]->setText(QString::fromStdWString(sheet->readStr(axes[i][0], axes[i][1])));
+            } else if (ct == 1) {
+                qDebug("当前单元格为数值格式");
+                lEdit[i]->setText(QString::number((int)sheet->readNum(axes[i][0], axes[i][1])));
+            }
         }
+        book->release();
+        QMessageBox::information(this, tr("正确"), tr("文件读取成功！"));
     } else {
         QMessageBox::information(this, tr("错误"), tr("文件读取失败！"));
     }
 
-
+    return;
 }
+
+void MainWindow::menu_put_excel()
+{
+    Book *book = NULL;
+    book = xlCreateBook(); //xlCreateBook for xlsx
+    if (book == nullptr) {
+        qDebug("create book failed!");
+        return;
+    }
+    book->setKey(L"TommoT", L"windows-2421220b07c2e10a6eb96768a2p7r6gc");
+    if (book->load(L"C:/Users/bmliu/Desktop/workspace/QT_work/remote/xlsFile/example.xls"/*L":/xls/xlsFile/example.xls"*/)) {
+        qDebug("资源文件导入成功！");
+        Sheet *sheet = book->getSheet(0);
+        CellType ct = sheet->cellType(newAxes[1][0], newAxes[1][1]);
+        qDebug("cell type is %d", ct);
+        for (int i = 0; i < 78; i ++) {
+            sheet->writeStr(newAxes[i][0], newAxes[i][1], L"88"/*reinterpret_cast<const wchar_t *>(lEdit[i]->text().utf16())*/);
+        }
+        if (sheet->writeStr(newAxes[1][0], newAxes[1][1], L"88")) {
+            qDebug("写入单元格成功！");
+        }
+
+        if (book->save(L"new.xls")) {
+            book->release();
+        } else {
+            QMessageBox::information(this, tr("错误"), tr("导出excel文件失败！"));
+            book->release();
+        }
+    } else {
+        QMessageBox::information(this, tr("错误"), tr("资源文件损坏！"));
+    }
+
+    return;
+}
+
+void MainWindow::menu_about()
+{
+    static const QDate buildDate = QLocale( QLocale::English ).toDate( QString(__DATE__).replace("  ", " 0"), "MMM dd yyyy");
+    static const QTime buildTime = QTime::fromString(__TIME__, "hh:mm:ss");
+
+    QMessageBox::information(NULL,
+        tr("关于软件"),
+        tr("填码软件版本：%1\n"
+        "软件更新日期：%2%3\n"
+        "芯片程序版本：%4\n"
+        "程序更新日期：%5\n"
+        "源码校验信息：%6")\
+        .arg("1.4.0.0")\
+        .arg(buildDate.toString("yyyy.MM.dd"),buildTime.toString("  hh:mm:ss"))\
+        .arg("1.8.0.0")\
+        .arg("2020年11月16日")\
+        .arg("0000000"));
+}
+
