@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/excel">
+        <file>xlsFile/example.xls</file>
+    </qresource>
+</RCC>

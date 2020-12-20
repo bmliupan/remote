@@ -203,8 +203,9 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     connect(ui->menu_get_excel, SIGNAL(triggered()), this, SLOT(menu_get_excel()));
+    connect(ui->menu_put_excel, SIGNAL(triggered()), this, SLOT(menu_put_excel()));
     connect(ui->menu_about, SIGNAL(triggered()), this, SLOT(menu_about()));
-    //connect(ui->menu_put_excel, SIGNAL(triggered()), this, SLOT(menu_put_excel()));
+
 }
 
 MainWindow::~MainWindow()
@@ -761,15 +762,28 @@ void MainWindow::menu_get_excel()
     if (book->load(filePath.toStdWString().c_str())) {
         qDebug("excel 打开成功");
         Sheet *sheet = book->getSheet(0);
+        QString s = "";
+        if (sheet->cellType(12, 116) == 2) {
+            s = QString::fromStdWString(sheet->readStr(12, 116));
+        }
+        int (*array)[78][2] = nullptr;
+        if (s == "FC-2204") {
+            array = &newAxes;
+        } else {
+            array = &axes;
+        }
         for (uint8_t i = 0; i < 78; i++) {
-            CellType ct = sheet->cellType(axes[i][0], axes[i][1]);
+            lEdit[i]->setText("");                  //写入界面控件前，先清除数据
+        }
+        for (uint8_t i = 0; i < 78; i++) {
+            CellType ct = sheet->cellType((*array)[i][0], (*array)[i][1]);
             qDebug("cell type is %d", ct);
             if (ct == 2) {
                 qDebug("当前单元格为字符格式");
-                lEdit[i]->setText(QString::fromStdWString(sheet->readStr(axes[i][0], axes[i][1])));
+                lEdit[i]->setText(QString::fromStdWString(sheet->readStr((*array)[i][0], (*array)[i][1])));
             } else if (ct == 1) {
                 qDebug("当前单元格为数值格式");
-                lEdit[i]->setText(QString::number((int)sheet->readNum(axes[i][0], axes[i][1])));
+                lEdit[i]->setText(QString::number((int)sheet->readNum((*array)[i][0], (*array)[i][1])));
             }
         }
         book->release();
@@ -790,18 +804,15 @@ void MainWindow::menu_put_excel()
         return;
     }
     book->setKey(L"TommoT", L"windows-2421220b07c2e10a6eb96768a2p7r6gc");
-    if (book->load(L"C:/Users/bmliu/Desktop/workspace/QT_work/remote/xlsFile/example.xls"/*L":/xls/xlsFile/example.xls"*/)) {
+
+    if (book->load(L"C:/example.xls")) {
         qDebug("资源文件导入成功！");
         Sheet *sheet = book->getSheet(0);
         CellType ct = sheet->cellType(newAxes[1][0], newAxes[1][1]);
         qDebug("cell type is %d", ct);
         for (int i = 0; i < 78; i ++) {
-            sheet->writeStr(newAxes[i][0], newAxes[i][1], L"88"/*reinterpret_cast<const wchar_t *>(lEdit[i]->text().utf16())*/);
+            sheet->writeStr(newAxes[i][0], newAxes[i][1], reinterpret_cast<const wchar_t *>(lEdit[i]->text().utf16()));
         }
-        if (sheet->writeStr(newAxes[1][0], newAxes[1][1], L"88")) {
-            qDebug("写入单元格成功！");
-        }
-
         if (book->save(L"new.xls")) {
             book->release();
         } else {

@@ -46,6 +46,7 @@ bool checkInput(QString text, int num)
         return true;
     }
     keyFlag[num] = invalidFlag;
+
     return false;
 }
 
