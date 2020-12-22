@@ -281,7 +281,7 @@ void MainWindow::input_KeyNUM(QString text)
      int xInterval = ui->lineEdit_002->geometry().x() - ui->lineEdit_003->geometry().x();
      for (i = 0; i < 12; i++) {
          int xStart = a[i][0] - xInterval + widthC/2;
-         int yStart = a[i][1] + hightC ;
+         int yStart = a[i][1] + hightC/2 + ui->menu->size().rheight();
          int xEnd = a[0][0] + widthC + 6;
          int yEnd = yStart;
          if (i == 11) xStart = a[i][0] + 5;
@@ -293,13 +293,15 @@ void MainWindow::input_KeyNUM(QString text)
          if (i != 11) painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
      }
      int xStart = a[0][0] + widthC/2;
-     int yStart = ui->labela->geometry().y() + ui->labela->size().rheight() * 1;
+     int yStart = ui->labela->geometry().y() + ui->labela->size().rheight()/2 + ui->menu->size().rheight();
      int xEnd = a[0][0] + widthC + 6;
      int yEnd = yStart;
      painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
      xEnd = xStart;
      yEnd = a[11][1] + hightC;
      painter.drawLine(QPointF(xStart,yStart),QPointF(xEnd,yEnd));
+
+     return;
  }
 
 //生成烧录文件
@@ -743,6 +745,9 @@ void MainWindow::on_comboBox_LED_currentTextChanged()
         }
         j ++;
     }
+    paintEvent(NULL);
+
+    return;
 }
 
 void MainWindow::menu_get_excel()
@@ -838,10 +843,10 @@ void MainWindow::menu_about()
         "芯片程序版本：%4\n"
         "程序更新日期：%5\n"
         "源码校验信息：%6")\
-        .arg("1.4.0.0")\
+        .arg("1.7.0.0")\
         .arg(buildDate.toString("yyyy.MM.dd"),buildTime.toString("  hh:mm:ss"))\
         .arg("1.8.0.0")\
-        .arg("2020年11月16日")\
+        .arg("2020年12月22日")\
         .arg("0000000"));
 }
 
