@@ -843,9 +843,9 @@ void MainWindow::menu_about()
         "芯片程序版本：%4\n"
         "程序更新日期：%5\n"
         "源码校验信息：%6")\
-        .arg("1.7.0.0")\
-        .arg(buildDate.toString("yyyy.MM.dd"),buildTime.toString("  hh:mm:ss"))\
         .arg("1.8.0.0")\
+        .arg(buildDate.toString("yyyy.MM.dd"),buildTime.toString("  hh:mm:ss"))\
+        .arg("1.9.0.0")\
         .arg("2020年12月22日")\
         .arg("0000000"));
 }

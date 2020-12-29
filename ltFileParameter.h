@@ -3,16 +3,16 @@
 #include <QApplication>
 
 //初始化模块
-#define    IO_P1UPRE_ADDR                          100+4*0x0D17
-#define    IO_P2UPRE_ADDR                          100+4*0x0D19
-#define    IO_P1TSM_ADDR                           100+4*0x0D1B
-#define    IO_P2TSM_ADDR                           100+4*0x0D1D
-#define    IO_P1WAKE_ADDR                          100+4*0x0D1F
-#define    IO_P2WAKE_ADDR                          100+4*0x0D21
-#define    IO_P1MODE_ADDR                          100+4*0x0D23
-#define    IO_P2MODE_ADDR                          100+4*0x0D25
-#define    IO_P1DATA_ADDR                          100+4*0x0D27
-#define    IO_P2DATA_ADDR                          100+4*0x0D29
+#define    IO_P1UPRE_ADDR                          100+4*0x0DF9
+#define    IO_P2UPRE_ADDR                          100+4*0x0DFB
+#define    IO_P1TSM_ADDR                           100+4*0x0DFD
+#define    IO_P2TSM_ADDR                           100+4*0x0DFF
+#define    IO_P1WAKE_ADDR                          100+4*0x0E01
+#define    IO_P2WAKE_ADDR                          100+4*0x0E03
+#define    IO_P1MODE_ADDR                          100+4*0x0E05
+#define    IO_P2MODE_ADDR                          100+4*0x0E07
+#define    IO_P1DATA_ADDR                          100+4*0x0E09
+#define    IO_P2DATA_ADDR                          100+4*0x0E0B
 
 //按键扫描模块
 #define    KEY_START_ADDR                          100+4*0x0092
@@ -23,10 +23,10 @@
 #define    CHECK_IO_ADDR                           100+4*0x00AA
 
 //小红灯亮灭模块
-#define    LIGHT_ON_M_ADDR                         100+4*0x0DD0
-#define    LIGHT_ON_D_ADDR                         100+4*0x0DD1
-#define    LIGHT_OFF_M_ADDR                        100+4*0x0DD3
-#define    LIGHT_OFF_D_ADDR                        100+4*0x0DD4
+#define    LIGHT_ON_M_ADDR                         100+4*0x0EB2
+#define    LIGHT_ON_D_ADDR                         100+4*0x0EB3
+#define    LIGHT_OFF_M_ADDR                        100+4*0x0EB5
+#define    LIGHT_OFF_D_ADDR                        100+4*0x0EB6
 
 //学习时红灯闪烁方法模块                
 #define    LEARN_KEY_PRESS_ADDR                    100+4*0x04C0
@@ -34,24 +34,24 @@
 #define    LEARN_WAIT_IR_ADDR                      100+4*0x0512
 
 //编码格式用户码按键键值
-#define    KEY_DATA_ADDR                           100+4*0x0E1C
-#define    TV_USER_FORMAT_ADDR                     100+4*0x0E6A
-#define    TV_USER_CODE1_ADDR                      100+4*0x0E6C
-#define    TV_USER_CODE2_ADDR                      100+4*0x0E6E
-#define    TV_USER_CODE3_ADDR                      100+4*0x0E70
-#define    TV_USER_CODE4_ADDR                      100+4*0x0E72
-#define    STB_USER_FORMAT_ADDR                    100+4*0x0E75
-#define    STB_USER_CODE1_ADDR                     100+4*0x0E77
-#define    STB_USER_CODE2_ADDR                     100+4*0x0E79
-#define    STB_USER_CODE3_ADDR                     100+4*0x0E7B
-#define    STB_USER_CODE4_ADDR                     100+4*0x0E7D
+#define    KEY_DATA_ADDR                           100+4*0x0EFE
+#define    TV_USER_FORMAT_ADDR                     100+4*0x0F4C
+#define    TV_USER_CODE1_ADDR                      100+4*0x0F4E
+#define    TV_USER_CODE2_ADDR                      100+4*0x0F50
+#define    TV_USER_CODE3_ADDR                      100+4*0x0F52
+#define    TV_USER_CODE4_ADDR                      100+4*0x0F54
+#define    STB_USER_FORMAT_ADDR                    100+4*0x0F57
+#define    STB_USER_CODE1_ADDR                     100+4*0x0F59
+#define    STB_USER_CODE2_ADDR                     100+4*0x0F5B
+#define    STB_USER_CODE3_ADDR                     100+4*0x0F5D
+#define    STB_USER_CODE4_ADDR                     100+4*0x0F5F
 
 //学习设置键和学习按键配置
 #define    SET_KEY_ADDR1                           100+4*0x0048
 #define    SET_KEY_ADDR2                           100+4*0x04BE
 #define    SET_KEY_ADDR3                           100+4*0x04C4
 #define    SET_KEY_ADDR4                           100+4*0x04DC
-#define    LEARN_KEY_ADDR                          100+4*0x0E8A
+#define    LEARN_KEY_ADDR                          100+4*0x0F6C
 #define    SET_OUTPUT_ADDRS1                       100+4*0x04B0
 #define    SET_OUTPUT_ADDRS2                       100+4*0x04B1
 #define    SET_INPUT_SADDR                         100+4*0x04B6

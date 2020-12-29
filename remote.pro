@@ -1,5 +1,5 @@
 QT       += core gui
-VERSION = "1.7.0.0"
+VERSION = "1.8.0.0"
 RC_ICONS = icon/mcu.ico
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -44,4 +44,5 @@ RESOURCES += \
   excel.qrc \
   icon/icon.qrc \
   ltFile.qrc \
-  picture.qrc
+  picture.qrc \
+  qss.qrc

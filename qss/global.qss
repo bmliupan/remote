@@ -1,0 +1,6 @@
+QMainWindow{
+    background-color: rgba(100, 225, 100, 30);/*背景色*/
+}
+QMenuBar{
+    background-color: rgba(100, 225, 100, 30);/*背景色*/
+}
