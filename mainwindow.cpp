@@ -9,6 +9,8 @@
 #include <QPainter>
 #include <qdatetime.h>
 #include <QSignalMapper>
+#include <QTextStream>
+#include <windows.h>
 #include "libxl.h"
 
 int hightC = 0;
@@ -206,6 +208,22 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->menu_put_excel, SIGNAL(triggered()), this, SLOT(menu_put_excel()));
     connect(ui->menu_about, SIGNAL(triggered()), this, SLOT(menu_about()));
 
+    QString currentFilePath = QDir::currentPath() + QString("/temp.data");  // generate current path
+    if (QFile::exists(currentFilePath)) {                                           // create temp.data file, if it is exisit, open it!
+        QFile tempFile(currentFilePath);
+        if (!tempFile.open(QIODevice::ReadOnly|QIODevice::Text)) {
+            qDebug("file open failed!!!");
+            return;
+        }
+        QTextStream readText(&tempFile);
+        for (int i = 0; i < TOTALKEYNUM; i++) {
+            lEdit[i]->setText(readText.readLine());
+
+        }
+        tempFile.close();
+    }
+
+    return;
 }
 
 MainWindow::~MainWindow()
@@ -314,6 +332,13 @@ void MainWindow::on_pushButton_2_clicked()
     uint8_t totalKeyNum =0;
     uint8_t setKeyValue = 0;
     uint8_t learnKeyList[10] = {77,77,77,77,77,77,77,77,77,77};
+
+    for (int i = 0; i < TOTALKEYNUM; i++) { // before generate program file, reload data and check it!
+        if (checkInput(lEdit[i]->text(), i) == false) {
+            QMessageBox::information(NULL, "警告", "当前输入存在不合法字段，请检查！！！");
+            return;
+        }
+    }
     for (int i = 0; i < TOTALKEYNUM; i++) {
         if(keyFlag[i] == normalFlag) normalKeyNum ++;
         if(keyFlag[i] == learnFlag) {
@@ -850,3 +875,153 @@ void MainWindow::menu_about()
         .arg("0000000"));
 }
 
+
+void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
+{
+    QFont ft;
+    ft.setPointSize(11);
+
+    if (arg1 == "发码") {
+        if (exitKeyComboBox1 == nullptr) {
+            exitKeyComboBox1 = new(QComboBox);
+            if (exitKeyComboBox1 != nullptr) {
+                ui->gridLayout->addWidget(exitKeyComboBox1,1,3,0);
+                exitKeyComboBox1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
+                exitKeyComboBox1->addItems(keyList);
+                QObject::connect(exitKeyComboBox1, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_PowerKey_activated(const QString &)));
+            }
+        }
+        if (exitKeyComboBox2 == nullptr) {
+            exitKeyComboBox2 = new(QComboBox);
+            if (exitKeyComboBox2 != nullptr) {
+                ui->gridLayout->addWidget(exitKeyComboBox2,1,4,0);
+                exitKeyComboBox2->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
+                exitKeyComboBox2->addItems(keyList);
+                QObject::connect(exitKeyComboBox2, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_exitKey1_activated(const QString &)));
+            }
+        }
+        if (exitKeyComboBox3 == nullptr) {
+            exitKeyComboBox3 = new(QComboBox);
+            if (exitKeyComboBox3 != nullptr) {
+                ui->gridLayout->addWidget(exitKeyComboBox3,1,5,0);
+                exitKeyComboBox3->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
+                exitKeyComboBox3->addItems(keyList);
+                exitKeyComboBox3->addItem("所有键");
+                QObject::connect(exitKeyComboBox3, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_exitKey2_activated(const QString &)));
+            }
+        }
+        if (exitKeyLabel1 == nullptr) {
+            exitKeyLabel1 = new(QLabel);
+            if (exitKeyLabel1 != nullptr) {
+                ui->gridLayout->addWidget(exitKeyLabel1,0,3,0);
+                exitKeyLabel1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
+                exitKeyLabel1->setText("Power键选择");
+                exitKeyLabel1->setAlignment(Qt::AlignBottom);
+                exitKeyLabel1->setFont(ft);
+            }
+        }
+        if (exitKeyLabel2 == nullptr) {
+            exitKeyLabel2 = new(QLabel);
+            if (exitKeyLabel2 != nullptr) {
+                ui->gridLayout->addWidget(exitKeyLabel2,0,4,0);
+                exitKeyLabel2->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
+                exitKeyLabel2->setText("等待波形退出");
+                exitKeyLabel2->setAlignment(Qt::AlignBottom);
+                exitKeyLabel2->setFont(ft);
+            }
+        }
+        if (exitKeyLabel3 == nullptr) {
+            exitKeyLabel3 = new(QLabel);
+            if (exitKeyLabel3 != nullptr) {
+                ui->gridLayout->addWidget(exitKeyLabel3,0,5,0);
+                exitKeyLabel3->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
+                exitKeyLabel3->setText("等待按键退出");
+                exitKeyLabel3->setAlignment(Qt::AlignBottom);
+                exitKeyLabel3->setFont(ft);
+            }
+        }
+    } else {
+        if (exitKeyComboBox1 != nullptr) {
+            delete exitKeyComboBox1;
+            exitKeyComboBox1 = nullptr;
+        }
+        if (exitKeyComboBox2 != nullptr) {
+            delete exitKeyComboBox2;
+            exitKeyComboBox2 = nullptr;
+        }
+        if (exitKeyComboBox3 != nullptr) {
+            delete exitKeyComboBox3;
+            exitKeyComboBox3 = nullptr;
+        }
+        if (exitKeyLabel1 != nullptr) {
+            delete exitKeyLabel1;
+            exitKeyLabel1 = nullptr;
+        }
+        if (exitKeyLabel2 != nullptr) {
+            delete exitKeyLabel2;
+            exitKeyLabel2 = nullptr;
+        }
+        if (exitKeyLabel3 != nullptr) {
+            delete exitKeyLabel3;
+            exitKeyLabel3 = nullptr;
+        }
+    }
+}
+
+void MainWindow::on_comboBox_PowerKey_activated(const QString &arg1)
+{
+    qDebug("powerkey: your select is %ls",  qUtf16Printable(arg1));
+}
+
+void MainWindow::on_comboBox_exitKey1_activated(const QString &arg1)
+{
+    qDebug("wait wave come: your select is %ls",  qUtf16Printable(arg1));
+}
+
+void MainWindow::on_comboBox_exitKey2_activated(const QString &arg1)
+{
+    qDebug("wait key press: your select is %ls",  qUtf16Printable(arg1));
+}
+
+
+void MainWindow::on_pushButton_clear_clicked()
+{
+    QMessageBox *msgBox = new QMessageBox(QMessageBox::Question, tr("选择"), tr("请确认是否清除！"), QMessageBox::Yes|QMessageBox::No);
+    msgBox->button(QMessageBox::Yes)->setText("是");
+    msgBox->button(QMessageBox::No)->setText("否");
+
+    int rc = msgBox->exec();
+
+    if (rc == QMessageBox::Yes) {
+        for (int i = 0; i < TOTALKEYNUM; i++) {
+            lEdit[i]->setText("");
+        }
+
+        on_comboBox_SetKey_currentTextChanged("不发码");
+    }
+
+    return;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    qDebug("exit main window!");
+    QString currentFilePath = QDir::currentPath() + QString("/temp.data");  // generate current path
+    QFile tempFile(currentFilePath);                                            // create temp.data file, if it is exisit, open it!
+    if (!tempFile.open(QIODevice::WriteOnly|QIODevice::Text)) {
+        qDebug("file open failed!!!");
+        return;
+    }
+    QTextStream textRecord(&tempFile);
+    for (int i = 0; i < TOTALKEYNUM; i++) {
+        textRecord << lEdit[i]->text() <<endl;
+    }
+
+    tempFile.close(); // finish file operation, close it
+
+    SetFileAttributes((LPCWSTR)currentFilePath.unicode(),FILE_ATTRIBUTE_HIDDEN);    // make tempdata file become hidden file
+
+    event->accept(); // accepted exit signal, program exit
+
+    return;
+}

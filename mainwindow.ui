@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2277</width>
-    <height>1327</height>
+    <width>1000</width>
+    <height>641</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -3547,6 +3547,72 @@
         </item>
        </widget>
       </item>
+      <item row="19" column="0">
+       <widget class="QComboBox" name="comboBox_SetKey">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <item>
+         <property name="text">
+          <string>不发码</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>发码</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="18" column="0">
+       <widget class="QLabel" name="label_G_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>楷体</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+        </property>
+        <property name="text">
+         <string>设置键发码否</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+       </widget>
+      </item>
+      <item row="21" column="0">
+       <widget class="QPushButton" name="pushButton_clear">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>清   屏</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -3557,22 +3623,17 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2277</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFC_2204">
     <property name="title">
-     <string>文件导入</string>
+     <string>文件</string>
     </property>
+    <addaction name="menu_put_excel_2"/>
     <addaction name="menu_get_lt"/>
     <addaction name="menu_get_excel"/>
-   </widget>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>文件导出</string>
-    </property>
-    <addaction name="menu_put_excel"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -3581,6 +3642,18 @@
     <addaction name="separator"/>
     <addaction name="menu_view_help"/>
     <addaction name="menu_about"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>视图</string>
+    </property>
+    <widget class="QMenu" name="menu_3">
+     <property name="title">
+      <string>皮肤切换</string>
+     </property>
+     <addaction name="action_2"/>
+    </widget>
+    <addaction name="menu_3"/>
    </widget>
    <addaction name="menuFC_2204"/>
    <addaction name="menu"/>
@@ -3612,6 +3685,16 @@
   <action name="menu_get_excel">
    <property name="text">
     <string>导入excel文件</string>
+   </property>
+  </action>
+  <action name="menu_put_excel_2">
+   <property name="text">
+    <string>导出excel文件</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>经典</string>
    </property>
   </action>
  </widget>

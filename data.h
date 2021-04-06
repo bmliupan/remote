@@ -44,6 +44,7 @@ extern QString pinA[13];
 extern QString pinB[13];
 extern int axes[78][2];
 extern int newAxes[78][2];
+extern const QStringList keyList;
 
 #define MaxLearnKeyNum  10;
 
