@@ -218,8 +218,14 @@ MainWindow::MainWindow(QWidget *parent)
         QTextStream readText(&tempFile);
         for (int i = 0; i < TOTALKEYNUM; i++) {
             lEdit[i]->setText(readText.readLine());
-
         }
+        ui->comboBox_A->setCurrentText(readText.readLine());
+        ui->comboBox_B->setCurrentText(readText.readLine());
+        ui->comboBox_C->setCurrentText(readText.readLine());
+        ui->comboBox_LED->setCurrentText(readText.readLine());
+        ui->comboBox_SetKey->setCurrentText(readText.readLine());
+        ui->comboBox_STB_Format->setCurrentText(readText.readLine());
+        ui->comboBox_TV_Format->setCurrentText(readText.readLine());
         tempFile.close();
     }
 
@@ -1016,6 +1022,15 @@ void MainWindow::closeEvent(QCloseEvent *event)
     for (int i = 0; i < TOTALKEYNUM; i++) {
         textRecord << lEdit[i]->text() <<endl;
     }
+
+    textRecord << ui->comboBox_A->currentText() <<endl;
+    textRecord << ui->comboBox_B->currentText() <<endl;
+    textRecord << ui->comboBox_C->currentText() <<endl;
+    textRecord << ui->comboBox_LED->currentText() <<endl;
+    textRecord << ui->comboBox_SetKey->currentText() <<endl;
+    textRecord << ui->comboBox_STB_Format->currentText() <<endl;
+    textRecord << ui->comboBox_TV_Format->currentText() <<endl;
+
 
     tempFile.close(); // finish file operation, close it
 
