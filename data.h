@@ -28,6 +28,9 @@ enum IOLevel {
 extern bool toggleState;
 extern bool display_flag;
 extern uint8_t edit_flag;
+extern uint8_t powerKey;
+extern uint8_t exitKey1;
+extern uint8_t exitKey2;
 extern uint16_t keyValue[78];
 extern uint8_t keyFlag[78];
 extern uint8_t translate[78];

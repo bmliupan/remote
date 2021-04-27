@@ -12,6 +12,7 @@
 #include <QTextStream>
 #include <windows.h>
 #include "libxl.h"
+#include "string.h"
 
 int hightC = 0;
 int widthC = 0;
@@ -893,6 +894,7 @@ void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
             if (exitKeyComboBox1 != nullptr) {
                 ui->gridLayout->addWidget(exitKeyComboBox1,1,3,0);
                 exitKeyComboBox1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
+                exitKeyComboBox1->setFixedWidth(116);
                 exitKeyComboBox1->addItems(keyList);
                 QObject::connect(exitKeyComboBox1, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_PowerKey_activated(const QString &)));
             }
@@ -902,6 +904,7 @@ void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
             if (exitKeyComboBox2 != nullptr) {
                 ui->gridLayout->addWidget(exitKeyComboBox2,1,4,0);
                 exitKeyComboBox2->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
+                exitKeyComboBox1->setFixedWidth(116);
                 exitKeyComboBox2->addItems(keyList);
                 QObject::connect(exitKeyComboBox2, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_exitKey1_activated(const QString &)));
             }
@@ -911,6 +914,7 @@ void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
             if (exitKeyComboBox3 != nullptr) {
                 ui->gridLayout->addWidget(exitKeyComboBox3,1,5,0);
                 exitKeyComboBox3->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
+                exitKeyComboBox1->setFixedWidth(116);
                 exitKeyComboBox3->addItems(keyList);
                 exitKeyComboBox3->addItem("所有键");
                 QObject::connect(exitKeyComboBox3, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_exitKey2_activated(const QString &)));
@@ -921,6 +925,7 @@ void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
             if (exitKeyLabel1 != nullptr) {
                 ui->gridLayout->addWidget(exitKeyLabel1,0,3,0);
                 exitKeyLabel1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
+                exitKeyComboBox1->setFixedWidth(116);
                 exitKeyLabel1->setText("Power键选择");
                 exitKeyLabel1->setAlignment(Qt::AlignBottom);
                 exitKeyLabel1->setFont(ft);
@@ -931,6 +936,7 @@ void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
             if (exitKeyLabel2 != nullptr) {
                 ui->gridLayout->addWidget(exitKeyLabel2,0,4,0);
                 exitKeyLabel2->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
+                exitKeyComboBox1->setFixedWidth(116);
                 exitKeyLabel2->setText("等待波形退出");
                 exitKeyLabel2->setAlignment(Qt::AlignBottom);
                 exitKeyLabel2->setFont(ft);
@@ -941,6 +947,7 @@ void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
             if (exitKeyLabel3 != nullptr) {
                 ui->gridLayout->addWidget(exitKeyLabel3,0,5,0);
                 exitKeyLabel3->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
+                exitKeyComboBox1->setFixedWidth(116);
                 exitKeyLabel3->setText("等待按键退出");
                 exitKeyLabel3->setAlignment(Qt::AlignBottom);
                 exitKeyLabel3->setFont(ft);
@@ -977,16 +984,33 @@ void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
 void MainWindow::on_comboBox_PowerKey_activated(const QString &arg1)
 {
     qDebug("powerkey: your select is %ls",  qUtf16Printable(arg1));
+    powerKey = translist[(uint8_t)((arg1.mid(1)).toUInt())-1];
+    qDebug("powerkey:  index is %d",  powerKey);
+
+    return;
 }
 
 void MainWindow::on_comboBox_exitKey1_activated(const QString &arg1)
 {
     qDebug("wait wave come: your select is %ls",  qUtf16Printable(arg1));
+    exitKey1 = translist[(uint8_t)((arg1.mid(1)).toUInt())-1];
+    qDebug("exitKey1:  index is %d",  exitKey1);
+
+    return;
 }
 
 void MainWindow::on_comboBox_exitKey2_activated(const QString &arg1)
 {
-    qDebug("wait key press: your select is %ls",  qUtf16Printable(arg1));
+    if (QString::compare(arg1, "所有键") == 0) {
+        exitKey2 = 88;
+        qDebug("exitKey2:  index is %d",  exitKey2);
+    } else {
+        qDebug("wait key press: your select is %ls",  qUtf16Printable(arg1));
+        exitKey2 = translist[(uint8_t)((arg1.mid(1)).toUInt())-1];
+        qDebug("exitKey2:  index is %d",  exitKey2);
+    }
+
+    return;
 }
 
 

@@ -3,6 +3,14 @@
 bool toggleState = true;
 bool display_flag = true; //序号显示与否标记位
 uint8_t edit_flag = normalFlag; //编辑模式标记
+uint8_t userCodeSTB[8] = {0};
+uint8_t userCodeTV[8] = {0};
+QString formatSTB = "";
+QString formatTV = "";
+uint8_t powerKey = 99;
+uint8_t exitKey1 = 99;
+uint8_t exitKey2 = 99;
+
 uint16_t keyValue[78] = {0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,\
                        0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,\
                        0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,\
@@ -28,11 +36,6 @@ uint8_t keyFlag[78] = {nonInputFlag,nonInputFlag,nonInputFlag,nonInputFlag,nonIn
                        nonInputFlag,nonInputFlag,nonInputFlag,nonInputFlag,nonInputFlag,\
                        nonInputFlag,nonInputFlag,nonInputFlag,nonInputFlag,nonInputFlag,\
                        nonInputFlag,nonInputFlag,nonInputFlag}; //保存按键模式标记
-
-uint8_t userCodeSTB[8] = {0};
-uint8_t userCodeTV[8] = {0};
-QString formatSTB = "";
-QString formatTV = "";
 
 uint8_t translate[78] = {
     66,67,68,69,70,71,72,73,74,75,76,77,\
