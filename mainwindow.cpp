@@ -916,7 +916,6 @@ void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
                 exitKeyComboBox3->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
                 exitKeyComboBox1->setFixedWidth(116);
                 exitKeyComboBox3->addItems(keyList);
-                exitKeyComboBox3->addItem("所有键");
                 QObject::connect(exitKeyComboBox3, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_exitKey2_activated(const QString &)));
             }
         }
@@ -1001,14 +1000,9 @@ void MainWindow::on_comboBox_exitKey1_activated(const QString &arg1)
 
 void MainWindow::on_comboBox_exitKey2_activated(const QString &arg1)
 {
-    if (QString::compare(arg1, "所有键") == 0) {
-        exitKey2 = 88;
-        qDebug("exitKey2:  index is %d",  exitKey2);
-    } else {
-        qDebug("wait key press: your select is %ls",  qUtf16Printable(arg1));
-        exitKey2 = translist[(uint8_t)((arg1.mid(1)).toUInt())-1];
-        qDebug("exitKey2:  index is %d",  exitKey2);
-    }
+    qDebug("wait key press: your select is %ls",  qUtf16Printable(arg1));
+    exitKey2 = translist[(uint8_t)((arg1.mid(1)).toUInt())-1];
+    qDebug("exitKey2:  index is %d",  exitKey2);
 
     return;
 }
@@ -1027,7 +1021,7 @@ void MainWindow::on_pushButton_clear_clicked()
             lEdit[i]->setText("");
         }
 
-        on_comboBox_SetKey_currentTextChanged("不发码");
+        ui->comboBox_SetKey->setCurrentText("不发码");
     }
 
     return;
