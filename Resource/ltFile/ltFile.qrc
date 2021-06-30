@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/lt">
-        <file>ltFile/new.lt</file>
+        <file>new.lt</file>
     </qresource>
 </RCC>

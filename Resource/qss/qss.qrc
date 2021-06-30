@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/qss">
-        <file>qss/global.qss</file>
+        <file>global.qss</file>
     </qresource>
 </RCC>

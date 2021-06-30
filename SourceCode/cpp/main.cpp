@@ -14,7 +14,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QPixmap bootUI(":/pic/picture/boot.png");
+    QPixmap bootUI(":/pic/boot.png");
     QSplashScreen bootScreen(bootUI);
     bootScreen.show();
 

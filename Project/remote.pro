@@ -1,6 +1,6 @@
 QT       += core gui
 VERSION = "1.9.0.0"
-RC_ICONS = icon/mcu.ico
+RC_ICONS = ../Resource/icon/mcu.ico
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -17,32 +17,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp \
-    data.cpp \
-    function.cpp
+    ../SourceCode/cpp/main.cpp \
+    ../SourceCode/cpp/mainwindow.cpp \
+    ../SourceCode/cpp/data.cpp \
+    ../SourceCode/cpp/function.cpp
 
 HEADERS += \
-    data.h \
-    function.h \
-    ltFileParameter.h \
-    mainwindow.h \
+    ../SourceCode/header/data.h \
+    ../SourceCode/header/function.h \
+    ../SourceCode/header/ltFileParameter.h \
+    ../SourceCode/header/mainwindow.h \
 
 FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
     remote_zh_CN.ts
-INCLUDEPATH = ./include_cpp/
-LIBS += ./libxl.lib
+INCLUDEPATH = ../SourceCode/header/include_cpp/ \
+              ../SourceCode/header/
+
+LIBS += ../SourceCode/library/libxl.lib
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-  excel.qrc \
-  icon/icon.qrc \
-  ltFile.qrc \
-  picture.qrc \
-  qss.qrc
+  ../Resource/icon/icon.qrc \
+  ../Resource/ltFile/ltFile.qrc \
+  ../Resource/picture/picture.qrc \
+  ../Resource/qss/qss.qrc \
+  ../Resource/xlsFile/xlsFile.qrc
