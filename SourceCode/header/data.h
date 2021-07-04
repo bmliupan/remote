@@ -6,6 +6,7 @@ enum FlagType {
     normalFlag,     //机顶盒按键输入标记
     learnFlag,      //学习按键输入标记
     setFlag,        //设置键输入标记
+    exitFlag,       //退出学习按键标记
     invalidFlag,    //无效输入标记
     nonInputFlag    //没有输入
 };
@@ -37,6 +38,8 @@ extern uint8_t translate[78];
 extern uint8_t translist[78];
 extern uint8_t userCodeSTB[8];
 extern uint8_t userCodeTV[8];
+extern uint8_t learnKeyNum;
+extern uint8_t setKeyNUm;
 extern QString formatSTB;
 extern QString formatTV;
 extern QString formatStr[];

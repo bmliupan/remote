@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_B->setStyleSheet("color:red;");
     ui->label_C->setStyleSheet("color:red;");
     setWindowIcon(QIcon(":/icon/mcu.ico"));
+
     lEdit[0] = qobject_cast<QLineEdit *>(ui->lineEdit_001);
     lEdit[1] = qobject_cast<QLineEdit *>(ui->lineEdit_002);
     lEdit[2] = qobject_cast<QLineEdit *>(ui->lineEdit_003);
@@ -199,11 +200,15 @@ MainWindow::MainWindow(QWidget *parent)
     pinLabel[12] = qobject_cast<QLabel *>(ui->labelm);
 
     QSignalMapper *signal_mapper = new QSignalMapper(this);
+    QSignalMapper *click_mapper = new QSignalMapper(this);
     connect(signal_mapper, SIGNAL(mapped(const QString &)), this, SLOT(input_KeyNUM(QString)));
+    connect(click_mapper, SIGNAL(mapped(const QString &)), this, SLOT(lineEditClicked(QString)));
     for (int i = 0; i < 78; i ++) {
         signal_mapper->setMapping(lEdit[i], QString::number(i, 10));
+        click_mapper->setMapping(lEdit[i], QString::number(i, 10));
         connect(lEdit[i], SIGNAL(editingFinished()), signal_mapper, SLOT(map()));
-    }
+        connect(lEdit[i], SIGNAL(clicked()), click_mapper, SLOT(map()));
+    } 
 
     connect(ui->menu_get_excel, SIGNAL(triggered()), this, SLOT(menu_get_excel()));
     connect(ui->menu_put_excel, SIGNAL(triggered()), this, SLOT(menu_put_excel()));
@@ -238,17 +243,60 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// 处理键值输入框点击事件
+void MainWindow::lineEditClicked(QString text)
+{
+    int index = text.toInt();
+    qDebug("current clicked line edit index value is %d", index);
+
+    if (lEdit[index] == nullptr) return;
+
+    switch (edit_flag) {
+            case normalFlag:
+                lEdit[index]->setStyleSheet("background-color:white");
+                keyFlag[index] = normalFlag;
+                break;
+
+            case learnFlag:
+                if (get_Current_LearnKey_Num() >= 10) {
+                    QMessageBox::information(NULL, "警告", "学习按键数量只能小于等于 10！！！");
+                } else {
+                    lEdit[index]->setStyleSheet("background-color: #33ccff");
+                    keyFlag[index] = learnFlag;
+                }
+                break;
+
+            case setFlag:
+                if (get_Current_LearnSetKey_Num() >= 1) {
+                    QMessageBox::information(NULL, "警告", "学习设置键有且仅有一个！！！");
+                } else {
+                    lEdit[index]->setStyleSheet("background-color:red");
+                    keyFlag[index] = setFlag;
+                }
+                break;
+
+            case exitFlag:
+                if (get_Current_LearnExitKey_Num() >= 1) {
+                    QMessageBox::information(NULL, "警告", "学习退出键有且仅有一个！！！");
+                } else {
+                    lEdit[index]->setStyleSheet("background-color: #ffff00");
+                    keyFlag[index] = exitFlag;
+                }
+                break;
+
+            default:
+                break;
+    }
+
+}
+
 void MainWindow::input_KeyNUM(QString text)
 {
 
     int index = text.toInt();
     qDebug("index value is %d", index);
     if (lEdit[index] == nullptr) return;
-    if (!edit_flag) {
-        lEdit[index]->setStyleSheet("background-color:rgba(255,255,255,255)");
-    } else {
-        lEdit[index]->setStyleSheet("background-color:rgba(255,0,0,255)");
-    }
+
     if (checkInput(lEdit[index]->text(), index) == false) {
         QMessageBox::information(NULL, "警告", "输入不合法，请检查！！！");
     }
@@ -652,15 +700,39 @@ void MainWindow::on_pushButton_2_clicked()
 //更改编辑状态
 void MainWindow::on_pushButton_1_clicked()
 {
-    edit_flag = (!edit_flag)&0x01;
-    if(edit_flag) {
-        ui->pushButton_1->setText("学习按键编辑");
-        ui->pushButton_1->setStyleSheet("color:red");
-    } else {
-        ui->pushButton_1->setText("普通按键编辑");
-        ui->pushButton_1->setStyleSheet("color:black");
+    uint8_t limitNum = 2;
+
+    edit_flag ++;
+    if (ui->comboBox_SetKey->currentText() == "发码") {
+        limitNum = 3;
+    }
+    if (edit_flag > limitNum) edit_flag = 0;
+    switch (edit_flag) {
+            case normalFlag:
+                ui->pushButton_1->setText("普通按键选择");
+                ui->pushButton_1->setStyleSheet("background-color:white");
+                break;
+
+            case learnFlag:
+                ui->pushButton_1->setText("学习按键选择");
+                ui->pushButton_1->setStyleSheet("background-color: #33ccff");
+                break;
+
+            case setFlag:
+                ui->pushButton_1->setText("设置按键选择");
+                ui->pushButton_1->setStyleSheet("background-color:red");
+                break;
+
+            case exitFlag:
+                ui->pushButton_1->setText("退出按键选择");
+                ui->pushButton_1->setStyleSheet("background-color:#ffff00");
+                break;
+
+            default:
+                break;
     }
 
+    return;
 }
 //更改显示连接还是按键编号
 void MainWindow::on_pushButton_3_clicked()
@@ -881,132 +953,6 @@ void MainWindow::menu_about()
         .arg("2020年12月22日")\
         .arg("0000000"));
 }
-
-
-void MainWindow::on_comboBox_SetKey_currentTextChanged(const QString &arg1)
-{
-    QFont ft;
-    ft.setPointSize(11);
-
-    if (arg1 == "发码") {
-        if (exitKeyComboBox1 == nullptr) {
-            exitKeyComboBox1 = new(QComboBox);
-            if (exitKeyComboBox1 != nullptr) {
-                ui->gridLayout->addWidget(exitKeyComboBox1,1,3,0);
-                exitKeyComboBox1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
-                exitKeyComboBox1->setFixedWidth(116);
-                exitKeyComboBox1->addItems(keyList);
-                QObject::connect(exitKeyComboBox1, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_PowerKey_activated(const QString &)));
-            }
-        }
-        if (exitKeyComboBox2 == nullptr) {
-            exitKeyComboBox2 = new(QComboBox);
-            if (exitKeyComboBox2 != nullptr) {
-                ui->gridLayout->addWidget(exitKeyComboBox2,1,4,0);
-                exitKeyComboBox2->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
-                exitKeyComboBox1->setFixedWidth(116);
-                exitKeyComboBox2->addItems(keyList);
-                QObject::connect(exitKeyComboBox2, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_exitKey1_activated(const QString &)));
-            }
-        }
-        if (exitKeyComboBox3 == nullptr) {
-            exitKeyComboBox3 = new(QComboBox);
-            if (exitKeyComboBox3 != nullptr) {
-                ui->gridLayout->addWidget(exitKeyComboBox3,1,5,0);
-                exitKeyComboBox3->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::ComboBox));
-                exitKeyComboBox1->setFixedWidth(116);
-                exitKeyComboBox3->addItems(keyList);
-                QObject::connect(exitKeyComboBox3, SIGNAL(activated(const QString &)), this, SLOT(on_comboBox_exitKey2_activated(const QString &)));
-            }
-        }
-        if (exitKeyLabel1 == nullptr) {
-            exitKeyLabel1 = new(QLabel);
-            if (exitKeyLabel1 != nullptr) {
-                ui->gridLayout->addWidget(exitKeyLabel1,0,3,0);
-                exitKeyLabel1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
-                exitKeyComboBox1->setFixedWidth(116);
-                exitKeyLabel1->setText("Power键选择");
-                exitKeyLabel1->setAlignment(Qt::AlignBottom);
-                exitKeyLabel1->setFont(ft);
-            }
-        }
-        if (exitKeyLabel2 == nullptr) {
-            exitKeyLabel2 = new(QLabel);
-            if (exitKeyLabel2 != nullptr) {
-                ui->gridLayout->addWidget(exitKeyLabel2,0,4,0);
-                exitKeyLabel2->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
-                exitKeyComboBox1->setFixedWidth(116);
-                exitKeyLabel2->setText("等待波形退出");
-                exitKeyLabel2->setAlignment(Qt::AlignBottom);
-                exitKeyLabel2->setFont(ft);
-            }
-        }
-        if (exitKeyLabel3 == nullptr) {
-            exitKeyLabel3 = new(QLabel);
-            if (exitKeyLabel3 != nullptr) {
-                ui->gridLayout->addWidget(exitKeyLabel3,0,5,0);
-                exitKeyLabel3->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, QSizePolicy::Label));
-                exitKeyComboBox1->setFixedWidth(116);
-                exitKeyLabel3->setText("等待按键退出");
-                exitKeyLabel3->setAlignment(Qt::AlignBottom);
-                exitKeyLabel3->setFont(ft);
-            }
-        }
-    } else {
-        if (exitKeyComboBox1 != nullptr) {
-            delete exitKeyComboBox1;
-            exitKeyComboBox1 = nullptr;
-        }
-        if (exitKeyComboBox2 != nullptr) {
-            delete exitKeyComboBox2;
-            exitKeyComboBox2 = nullptr;
-        }
-        if (exitKeyComboBox3 != nullptr) {
-            delete exitKeyComboBox3;
-            exitKeyComboBox3 = nullptr;
-        }
-        if (exitKeyLabel1 != nullptr) {
-            delete exitKeyLabel1;
-            exitKeyLabel1 = nullptr;
-        }
-        if (exitKeyLabel2 != nullptr) {
-            delete exitKeyLabel2;
-            exitKeyLabel2 = nullptr;
-        }
-        if (exitKeyLabel3 != nullptr) {
-            delete exitKeyLabel3;
-            exitKeyLabel3 = nullptr;
-        }
-    }
-}
-
-void MainWindow::on_comboBox_PowerKey_activated(const QString &arg1)
-{
-    qDebug("powerkey: your select is %ls",  qUtf16Printable(arg1));
-    powerKey = translist[(uint8_t)((arg1.mid(1)).toUInt())-1];
-    qDebug("powerkey:  index is %d",  powerKey);
-
-    return;
-}
-
-void MainWindow::on_comboBox_exitKey1_activated(const QString &arg1)
-{
-    qDebug("wait wave come: your select is %ls",  qUtf16Printable(arg1));
-    exitKey1 = translist[(uint8_t)((arg1.mid(1)).toUInt())-1];
-    qDebug("exitKey1:  index is %d",  exitKey1);
-
-    return;
-}
-
-void MainWindow::on_comboBox_exitKey2_activated(const QString &arg1)
-{
-    qDebug("wait key press: your select is %ls",  qUtf16Printable(arg1));
-    exitKey2 = translist[(uint8_t)((arg1.mid(1)).toUInt())-1];
-    qDebug("exitKey2:  index is %d",  exitKey2);
-
-    return;
-}
-
 
 void MainWindow::on_pushButton_clear_clicked()
 {

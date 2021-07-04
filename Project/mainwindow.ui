@@ -26,7 +26,7 @@
    <string>FC-2204</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="icon/icon.qrc">
+   <iconset resource="../Resource/icon/icon.qrc">
     <normaloff>:/icon/mcu.ico</normaloff>:/icon/mcu.ico</iconset>
   </property>
   <property name="documentMode">
@@ -49,7 +49,7 @@
        <number>0</number>
       </property>
       <item row="19" column="8">
-       <widget class="QLineEdit" name="lineEdit_050">
+       <widget class="MyLineEdit" name="lineEdit_050">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -71,7 +71,7 @@
        </widget>
       </item>
       <item row="17" column="8">
-       <widget class="QLineEdit" name="lineEdit_041">
+       <widget class="MyLineEdit" name="lineEdit_041">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -143,7 +143,7 @@
        </widget>
       </item>
       <item row="19" column="10">
-       <widget class="QLineEdit" name="lineEdit_048">
+       <widget class="MyLineEdit" name="lineEdit_048">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -165,7 +165,7 @@
        </widget>
       </item>
       <item row="11" column="9">
-       <widget class="QLineEdit" name="lineEdit_019">
+       <widget class="MyLineEdit" name="lineEdit_019">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -187,7 +187,7 @@
        </widget>
       </item>
       <item row="23" column="8">
-       <widget class="QLineEdit" name="lineEdit_071">
+       <widget class="MyLineEdit" name="lineEdit_071">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -209,7 +209,7 @@
        </widget>
       </item>
       <item row="23" column="3">
-       <widget class="QLineEdit" name="lineEdit_076">
+       <widget class="MyLineEdit" name="lineEdit_076">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -263,7 +263,7 @@
        </widget>
       </item>
       <item row="21" column="10">
-       <widget class="QLineEdit" name="lineEdit_058">
+       <widget class="MyLineEdit" name="lineEdit_058">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -285,7 +285,7 @@
        </widget>
       </item>
       <item row="17" column="10">
-       <widget class="QLineEdit" name="lineEdit_039">
+       <widget class="MyLineEdit" name="lineEdit_039">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -342,7 +342,7 @@
        </widget>
       </item>
       <item row="9" column="9">
-       <widget class="QLineEdit" name="lineEdit_014">
+       <widget class="MyLineEdit" name="lineEdit_014">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -396,7 +396,7 @@
        </widget>
       </item>
       <item row="21" column="2">
-       <widget class="QLineEdit" name="lineEdit_066">
+       <widget class="MyLineEdit" name="lineEdit_066">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -418,7 +418,7 @@
        </widget>
       </item>
       <item row="1" column="12">
-       <widget class="QLineEdit" name="lineEdit_001">
+       <widget class="MyLineEdit" name="lineEdit_001">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -440,7 +440,7 @@
        </widget>
       </item>
       <item row="15" column="6">
-       <widget class="QLineEdit" name="lineEdit_035">
+       <widget class="MyLineEdit" name="lineEdit_035">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -478,7 +478,7 @@
        </widget>
       </item>
       <item row="11" column="12">
-       <widget class="QLineEdit" name="lineEdit_016">
+       <widget class="MyLineEdit" name="lineEdit_016">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -535,7 +535,7 @@
        </widget>
       </item>
       <item row="15" column="7">
-       <widget class="QLineEdit" name="lineEdit_034">
+       <widget class="MyLineEdit" name="lineEdit_034">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -589,7 +589,7 @@
        </widget>
       </item>
       <item row="23" column="4">
-       <widget class="QLineEdit" name="lineEdit_075">
+       <widget class="MyLineEdit" name="lineEdit_075">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -627,7 +627,7 @@
        </widget>
       </item>
       <item row="5" column="11">
-       <widget class="QLineEdit" name="lineEdit_005">
+       <widget class="MyLineEdit" name="lineEdit_005">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -649,7 +649,7 @@
        </widget>
       </item>
       <item row="17" column="7">
-       <widget class="QLineEdit" name="lineEdit_042">
+       <widget class="MyLineEdit" name="lineEdit_042">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -687,7 +687,7 @@
        </widget>
       </item>
       <item row="17" column="4">
-       <widget class="QLineEdit" name="lineEdit_045">
+       <widget class="MyLineEdit" name="lineEdit_045">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -727,7 +727,7 @@
        </widget>
       </item>
       <item row="7" column="12">
-       <widget class="QLineEdit" name="lineEdit_007">
+       <widget class="MyLineEdit" name="lineEdit_007">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -749,7 +749,7 @@
        </widget>
       </item>
       <item row="23" column="10">
-       <widget class="QLineEdit" name="lineEdit_069">
+       <widget class="MyLineEdit" name="lineEdit_069">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -771,7 +771,7 @@
        </widget>
       </item>
       <item row="23" column="12">
-       <widget class="QLineEdit" name="lineEdit_067">
+       <widget class="MyLineEdit" name="lineEdit_067">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -809,7 +809,7 @@
        </widget>
       </item>
       <item row="15" column="11">
-       <widget class="QLineEdit" name="lineEdit_030">
+       <widget class="MyLineEdit" name="lineEdit_030">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -831,7 +831,7 @@
        </widget>
       </item>
       <item row="23" column="1">
-       <widget class="QLineEdit" name="lineEdit_078">
+       <widget class="MyLineEdit" name="lineEdit_078">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -917,7 +917,7 @@
        </widget>
       </item>
       <item row="13" column="8">
-       <widget class="QLineEdit" name="lineEdit_026">
+       <widget class="MyLineEdit" name="lineEdit_026">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -958,7 +958,7 @@
        </widget>
       </item>
       <item row="11" column="7">
-       <widget class="QLineEdit" name="lineEdit_021">
+       <widget class="MyLineEdit" name="lineEdit_021">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -996,7 +996,7 @@
        </widget>
       </item>
       <item row="19" column="4">
-       <widget class="QLineEdit" name="lineEdit_054">
+       <widget class="MyLineEdit" name="lineEdit_054">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1034,7 +1034,7 @@
        </widget>
       </item>
       <item row="19" column="11">
-       <widget class="QLineEdit" name="lineEdit_047">
+       <widget class="MyLineEdit" name="lineEdit_047">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1056,7 +1056,7 @@
        </widget>
       </item>
       <item row="21" column="6">
-       <widget class="QLineEdit" name="lineEdit_062">
+       <widget class="MyLineEdit" name="lineEdit_062">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1078,7 +1078,7 @@
        </widget>
       </item>
       <item row="23" column="5">
-       <widget class="QLineEdit" name="lineEdit_074">
+       <widget class="MyLineEdit" name="lineEdit_074">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1164,7 +1164,7 @@
        </widget>
       </item>
       <item row="5" column="10">
-       <widget class="QLineEdit" name="lineEdit_006">
+       <widget class="MyLineEdit" name="lineEdit_006">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1186,7 +1186,7 @@
        </widget>
       </item>
       <item row="17" column="11">
-       <widget class="QLineEdit" name="lineEdit_038">
+       <widget class="MyLineEdit" name="lineEdit_038">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1224,7 +1224,7 @@
        </widget>
       </item>
       <item row="23" column="2">
-       <widget class="QLineEdit" name="lineEdit_077">
+       <widget class="MyLineEdit" name="lineEdit_077">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1246,7 +1246,7 @@
        </widget>
       </item>
       <item row="17" column="12">
-       <widget class="QLineEdit" name="lineEdit_037">
+       <widget class="MyLineEdit" name="lineEdit_037">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1284,7 +1284,7 @@
        </widget>
       </item>
       <item row="23" column="6">
-       <widget class="QLineEdit" name="lineEdit_073">
+       <widget class="MyLineEdit" name="lineEdit_073">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1322,7 +1322,7 @@
        </widget>
       </item>
       <item row="15" column="5">
-       <widget class="QLineEdit" name="lineEdit_036">
+       <widget class="MyLineEdit" name="lineEdit_036">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1392,7 +1392,7 @@
        </widget>
       </item>
       <item row="19" column="7">
-       <widget class="QLineEdit" name="lineEdit_051">
+       <widget class="MyLineEdit" name="lineEdit_051">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1414,7 +1414,7 @@
        </widget>
       </item>
       <item row="11" column="10">
-       <widget class="QLineEdit" name="lineEdit_018">
+       <widget class="MyLineEdit" name="lineEdit_018">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1487,7 +1487,7 @@
        </widget>
       </item>
       <item row="13" column="10">
-       <widget class="QLineEdit" name="lineEdit_024">
+       <widget class="MyLineEdit" name="lineEdit_024">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1509,7 +1509,7 @@
        </widget>
       </item>
       <item row="13" column="11">
-       <widget class="QLineEdit" name="lineEdit_023">
+       <widget class="MyLineEdit" name="lineEdit_023">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1575,7 +1575,7 @@
        </widget>
       </item>
       <item row="19" column="5">
-       <widget class="QLineEdit" name="lineEdit_053">
+       <widget class="MyLineEdit" name="lineEdit_053">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1629,7 +1629,7 @@
        </widget>
       </item>
       <item row="19" column="3">
-       <widget class="QLineEdit" name="lineEdit_055">
+       <widget class="MyLineEdit" name="lineEdit_055">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1651,7 +1651,7 @@
        </widget>
       </item>
       <item row="11" column="11">
-       <widget class="QLineEdit" name="lineEdit_017">
+       <widget class="MyLineEdit" name="lineEdit_017">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1721,7 +1721,7 @@
        </widget>
       </item>
       <item row="7" column="10">
-       <widget class="QLineEdit" name="lineEdit_009">
+       <widget class="MyLineEdit" name="lineEdit_009">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1743,7 +1743,7 @@
        </widget>
       </item>
       <item row="15" column="9">
-       <widget class="QLineEdit" name="lineEdit_032">
+       <widget class="MyLineEdit" name="lineEdit_032">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1935,7 +1935,7 @@
        </widget>
       </item>
       <item row="3" column="11">
-       <widget class="QLineEdit" name="lineEdit_003">
+       <widget class="MyLineEdit" name="lineEdit_003">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1989,7 +1989,7 @@
        </widget>
       </item>
       <item row="15" column="8">
-       <widget class="QLineEdit" name="lineEdit_033">
+       <widget class="MyLineEdit" name="lineEdit_033">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2043,7 +2043,7 @@
        </widget>
       </item>
       <item row="21" column="7">
-       <widget class="QLineEdit" name="lineEdit_061">
+       <widget class="MyLineEdit" name="lineEdit_061">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2065,7 +2065,7 @@
        </widget>
       </item>
       <item row="9" column="10">
-       <widget class="QLineEdit" name="lineEdit_013">
+       <widget class="MyLineEdit" name="lineEdit_013">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2087,7 +2087,7 @@
        </widget>
       </item>
       <item row="11" column="8">
-       <widget class="QLineEdit" name="lineEdit_020">
+       <widget class="MyLineEdit" name="lineEdit_020">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2109,7 +2109,7 @@
        </widget>
       </item>
       <item row="9" column="11">
-       <widget class="QLineEdit" name="lineEdit_012">
+       <widget class="MyLineEdit" name="lineEdit_012">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2179,7 +2179,7 @@
        </widget>
       </item>
       <item row="21" column="4">
-       <widget class="QLineEdit" name="lineEdit_064">
+       <widget class="MyLineEdit" name="lineEdit_064">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2226,7 +2226,7 @@
        </widget>
       </item>
       <item row="13" column="7">
-       <widget class="QLineEdit" name="lineEdit_027">
+       <widget class="MyLineEdit" name="lineEdit_027">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2296,7 +2296,7 @@
        </widget>
       </item>
       <item row="17" column="5">
-       <widget class="QLineEdit" name="lineEdit_044">
+       <widget class="MyLineEdit" name="lineEdit_044">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2318,7 +2318,7 @@
        </widget>
       </item>
       <item row="9" column="12">
-       <widget class="QLineEdit" name="lineEdit_011">
+       <widget class="MyLineEdit" name="lineEdit_011">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2340,7 +2340,7 @@
        </widget>
       </item>
       <item row="21" column="9">
-       <widget class="QLineEdit" name="lineEdit_059">
+       <widget class="MyLineEdit" name="lineEdit_059">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2362,7 +2362,7 @@
        </widget>
       </item>
       <item row="7" column="9">
-       <widget class="QLineEdit" name="lineEdit_010">
+       <widget class="MyLineEdit" name="lineEdit_010">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2384,7 +2384,7 @@
        </widget>
       </item>
       <item row="13" column="9">
-       <widget class="QLineEdit" name="lineEdit_025">
+       <widget class="MyLineEdit" name="lineEdit_025">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2422,7 +2422,7 @@
        </widget>
       </item>
       <item row="15" column="10">
-       <widget class="QLineEdit" name="lineEdit_031">
+       <widget class="MyLineEdit" name="lineEdit_031">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2476,7 +2476,7 @@
        </widget>
       </item>
       <item row="5" column="12">
-       <widget class="QLineEdit" name="lineEdit_004">
+       <widget class="MyLineEdit" name="lineEdit_004">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2517,7 +2517,7 @@
        </widget>
       </item>
       <item row="21" column="5">
-       <widget class="QLineEdit" name="lineEdit_063">
+       <widget class="MyLineEdit" name="lineEdit_063">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2571,7 +2571,7 @@
        </widget>
       </item>
       <item row="13" column="12">
-       <widget class="QLineEdit" name="lineEdit_022">
+       <widget class="MyLineEdit" name="lineEdit_022">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2641,7 +2641,7 @@
        </widget>
       </item>
       <item row="13" column="6">
-       <widget class="QLineEdit" name="lineEdit_028">
+       <widget class="MyLineEdit" name="lineEdit_028">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2663,7 +2663,7 @@
        </widget>
       </item>
       <item row="19" column="6">
-       <widget class="QLineEdit" name="lineEdit_052">
+       <widget class="MyLineEdit" name="lineEdit_052">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2717,7 +2717,7 @@
        </widget>
       </item>
       <item row="3" column="12">
-       <widget class="QLineEdit" name="lineEdit_002">
+       <widget class="MyLineEdit" name="lineEdit_002">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2771,7 +2771,7 @@
        </widget>
       </item>
       <item row="21" column="8">
-       <widget class="QLineEdit" name="lineEdit_060">
+       <widget class="MyLineEdit" name="lineEdit_060">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2793,7 +2793,7 @@
        </widget>
       </item>
       <item row="17" column="9">
-       <widget class="QLineEdit" name="lineEdit_040">
+       <widget class="MyLineEdit" name="lineEdit_040">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2815,7 +2815,7 @@
        </widget>
       </item>
       <item row="17" column="6">
-       <widget class="QLineEdit" name="lineEdit_043">
+       <widget class="MyLineEdit" name="lineEdit_043">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2837,7 +2837,7 @@
        </widget>
       </item>
       <item row="21" column="11">
-       <widget class="QLineEdit" name="lineEdit_057">
+       <widget class="MyLineEdit" name="lineEdit_057">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2891,7 +2891,7 @@
        </widget>
       </item>
       <item row="23" column="9">
-       <widget class="QLineEdit" name="lineEdit_070">
+       <widget class="MyLineEdit" name="lineEdit_070">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2913,7 +2913,7 @@
        </widget>
       </item>
       <item row="15" column="12">
-       <widget class="QLineEdit" name="lineEdit_029">
+       <widget class="MyLineEdit" name="lineEdit_029">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -2935,7 +2935,7 @@
        </widget>
       </item>
       <item row="21" column="3">
-       <widget class="QLineEdit" name="lineEdit_065">
+       <widget class="MyLineEdit" name="lineEdit_065">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3053,7 +3053,7 @@
        </widget>
       </item>
       <item row="23" column="7">
-       <widget class="QLineEdit" name="lineEdit_072">
+       <widget class="MyLineEdit" name="lineEdit_072">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3075,7 +3075,7 @@
        </widget>
       </item>
       <item row="19" column="12">
-       <widget class="QLineEdit" name="lineEdit_046">
+       <widget class="MyLineEdit" name="lineEdit_046">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3097,7 +3097,7 @@
        </widget>
       </item>
       <item row="19" column="9">
-       <widget class="QLineEdit" name="lineEdit_049">
+       <widget class="MyLineEdit" name="lineEdit_049">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3119,7 +3119,7 @@
        </widget>
       </item>
       <item row="23" column="11">
-       <widget class="QLineEdit" name="lineEdit_068">
+       <widget class="MyLineEdit" name="lineEdit_068">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3173,7 +3173,7 @@
        </widget>
       </item>
       <item row="7" column="11">
-       <widget class="QLineEdit" name="lineEdit_008">
+       <widget class="MyLineEdit" name="lineEdit_008">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3211,7 +3211,7 @@
        </widget>
       </item>
       <item row="9" column="8">
-       <widget class="QLineEdit" name="lineEdit_015">
+       <widget class="MyLineEdit" name="lineEdit_015">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3233,7 +3233,7 @@
        </widget>
       </item>
       <item row="21" column="12">
-       <widget class="QLineEdit" name="lineEdit_056">
+       <widget class="MyLineEdit" name="lineEdit_056">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3624,7 +3624,7 @@
      <x>0</x>
      <y>0</y>
      <width>1829</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFC_2204">
@@ -3698,6 +3698,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>mylineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>lineEdit_001</tabstop>
   <tabstop>lineEdit_003</tabstop>
@@ -3786,7 +3793,7 @@
   <tabstop>pushButton_3</tabstop>
  </tabstops>
  <resources>
-  <include location="icon/icon.qrc"/>
+  <include location="../Resource/icon/icon.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -20,13 +20,15 @@ SOURCES += \
     ../SourceCode/cpp/main.cpp \
     ../SourceCode/cpp/mainwindow.cpp \
     ../SourceCode/cpp/data.cpp \
-    ../SourceCode/cpp/function.cpp
+    ../SourceCode/cpp/function.cpp\
+    ../SourceCode/cpp/mylineedit.cpp
 
 HEADERS += \
     ../SourceCode/header/data.h \
     ../SourceCode/header/function.h \
     ../SourceCode/header/ltFileParameter.h \
     ../SourceCode/header/mainwindow.h \
+    ../SourceCode/header/mylineedit.h
 
 FORMS += \
     mainwindow.ui

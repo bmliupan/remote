@@ -18,34 +18,30 @@ bool checkInput(QString text, int num)
 {
     char *s = NULL;
     int numH = 100, numL = 100;
-    keyFlag[num] = nonInputFlag; //初始标记没有输入
+
     QByteArray ba = text.toLatin1();
     s = ba.data();
     int length = strlen(s);
+
     if (length > 3) return false;
     for (int i = 0; i < length; i ++){
         if (s[i] >= 'a' && s[i] <= 'z') s[i] = s[i] - 32; // 将小写字母改成大写
     }
     if (s[0] == 'S' && s[1] == 'E' && s[2] == 'T') {
-        keyFlag[num] = setFlag; //如果输入字符为set，则将其设为设置键
         return true;
     }
     if (length == 0) {
-        keyFlag[num] = nonInputFlag;
         return true;
     }
     if (length == 2) {
         numH = char2int(s[0]);
         numL = char2int(s[1]);
         if (numH > 15 || numL > 15) {
-            keyFlag[num] = invalidFlag;
             return false;
         }
         keyValue[num] = (numH * 16) + numL;     //保存按键数据
-        keyFlag[num] = edit_flag;               //保存标记
         return true;
     }
-    keyFlag[num] = invalidFlag;
 
     return false;
 }
@@ -61,6 +57,7 @@ uint16_t calculate_verifycode(QByteArray dataBuff)
         xorNum[0] = xorNum[0] ^ dataBuff[i++];
     }
     buffCode = xorNum[3] * 0x1000 + xorNum[2] * 0x0100 + xorNum[1] * 0x0010 + xorNum[0] * 0x0001;
+
     return buffCode;
 }
 
@@ -70,6 +67,7 @@ uint8_t getFormatNum(QString format)
     for (i = 0; i < 47; i++) {
         if(formatStr[i] == format)return i;
     }
+
     return 100;
 }
 
@@ -88,5 +86,38 @@ void getKeyPin(uint8_t key, QString *pin, uint8_t *pinV1, uint8_t *pinV2)
     }
 
     return;
+}
+
+uint8_t get_Current_LearnKey_Num(void)
+{
+    uint8_t keyNum = 0;
+
+    for (int i = 0; i < 78; i ++) {
+        if (keyFlag[i] == learnFlag) keyNum ++;
+    }
+
+    return keyNum;
+}
+
+uint8_t get_Current_LearnSetKey_Num(void)
+{
+    uint8_t keyNum = 0;
+
+    for (int i = 0; i < 78; i ++) {
+        if (keyFlag[i] == setFlag) keyNum ++;
+    }
+
+    return keyNum;
+}
+
+uint8_t get_Current_LearnExitKey_Num(void)
+{
+    uint8_t keyNum = 0;
+
+    for (int i = 0; i < 78; i ++) {
+        if (keyFlag[i] == exitFlag) keyNum ++;
+    }
+
+    return keyNum;
 }
 
