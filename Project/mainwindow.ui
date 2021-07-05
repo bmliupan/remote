@@ -3631,7 +3631,7 @@
     <property name="title">
      <string>文件</string>
     </property>
-    <addaction name="menu_put_excel_2"/>
+    <addaction name="menu_output_excel"/>
     <addaction name="menu_get_lt"/>
     <addaction name="menu_get_excel"/>
    </widget>
@@ -3687,7 +3687,7 @@
     <string>导入excel文件</string>
    </property>
   </action>
-  <action name="menu_put_excel_2">
+  <action name="menu_output_excel">
    <property name="text">
     <string>导出excel文件</string>
    </property>

@@ -33,7 +33,7 @@ public slots:
     void input_KeyNUM(QString text);
     void lineEditClicked(QString text);
     void menu_get_excel();
-    void menu_put_excel();
+    void menu_output_excel();
     void menu_about();
 
 protected:

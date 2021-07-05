@@ -211,7 +211,7 @@ MainWindow::MainWindow(QWidget *parent)
     } 
 
     connect(ui->menu_get_excel, SIGNAL(triggered()), this, SLOT(menu_get_excel()));
-    connect(ui->menu_put_excel, SIGNAL(triggered()), this, SLOT(menu_put_excel()));
+    connect(ui->menu_output_excel, SIGNAL(triggered()), this, SLOT(menu_output_excel()));
     connect(ui->menu_about, SIGNAL(triggered()), this, SLOT(menu_about()));
 
     QString currentFilePath = QDir::currentPath() + QString("/temp.data");  // generate current path
@@ -390,7 +390,7 @@ void MainWindow::on_pushButton_2_clicked()
 
     for (int i = 0; i < TOTALKEYNUM; i++) { // before generate program file, reload data and check it!
         if (checkInput(lEdit[i]->text(), i) == false) {
-            QMessageBox::information(NULL, "警告", "当前输入存在不合法字段，请检查！！！");
+            QMessageBox::information(NULL, "警告", "当前输入存在非法字段，请检查！！！");
             return;
         }
     }
@@ -734,6 +734,7 @@ void MainWindow::on_pushButton_1_clicked()
 
     return;
 }
+
 //更改显示连接还是按键编号
 void MainWindow::on_pushButton_3_clicked()
 {
@@ -904,7 +905,7 @@ void MainWindow::menu_get_excel()
     return;
 }
 
-void MainWindow::menu_put_excel()
+void MainWindow::menu_output_excel()
 {
     Book *book = NULL;
     book = xlCreateBook(); //xlCreateBook for xlsx
@@ -914,7 +915,7 @@ void MainWindow::menu_put_excel()
     }
     book->setKey(L"TommoT", L"windows-2421220b07c2e10a6eb96768a2p7r6gc");
 
-    if (book->load(L"C:/example.xls")) {
+    if (book->load(L":/xlsFile/xlsFile/example.xls")) {
         qDebug("资源文件导入成功！");
         Sheet *sheet = book->getSheet(0);
         CellType ct = sheet->cellType(newAxes[1][0], newAxes[1][1]);
